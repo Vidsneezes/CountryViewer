@@ -1,19 +1,17 @@
 <template>
   <div class="countries">
-    <b-row >
-      <b-col v-for="country in countries" :key="country.id" class="bv-example-row">
-        <b-button size='lg' variant='primary'>
-          <router-link :to="{name:'CountryView' , params:{countryid: country.id}}">{{country.name}}</router-link>
-        </b-button>
+    <b-row  v-for="country in countries" :key="country.id" class="b-row">
+      <b-col>
+        <b-card :title='country.name'>
+          <b-button size='lg' variant='primary'>
+            <b-link :to="{name:'CountryView' , params:{countryid: country.id}}">Visit</b-link>
+          </b-button>
+        </b-card>
       </b-col>
     </b-row>
-    <b-container>
-      <b-row>
-        <b-button>
-          <router-link :to="{name:'AddCountryView'}">Add New Country</router-link>
-        </b-button>
-      </b-row>
-    </b-container>
+    <b-button>
+        <b-link :to="{name:'AddCountryView'}">Add New Country</b-link>
+    </b-button>
   </div>
 </template>
 <script>
