@@ -10,9 +10,13 @@ export function GetCountries () {
 }
 
 export function GetCountry (id) {
-  let indexedCountry = id - 1
-  state.countryId = indexedCountry
-  return data.countries[indexedCountry]
+  let indexedCountry = data.countries.find((element) => {
+    if (element.id === id) {
+      return element
+    }
+  })
+  state.countryId = indexedCountry.id
+  return indexedCountry
 }
 
 export function AddCountry (newCountry) {
@@ -31,13 +35,25 @@ export function AddCountry (newCountry) {
 }
 
 export function EditCountry (newCountryInfo, countryid) {
-  let indexedCountry = countryid - 1
-  data.countries[indexedCountry].name = newCountryInfo.name
-  data.countries[indexedCountry].alpha2 = newCountryInfo.alpha2
-  data.countries[indexedCountry].alpha3 = newCountryInfo.alpha3
-  data.countries[indexedCountry].code = newCountryInfo.code
-  data.countries[indexedCountry]['iso_3166_2'] = newCountryInfo.iso31662
-  data.countries[indexedCountry]['is_independent'] = newCountryInfo.isindependent
+  let indexedCountry = GetCountry(countryid)
+  indexedCountry.name = newCountryInfo.name
+  indexedCountry.alpha2 = newCountryInfo.alpha2
+  indexedCountry.alpha3 = newCountryInfo.alpha3
+  indexedCountry.code = newCountryInfo.code
+  indexedCountry['iso_3166_2'] = newCountryInfo.iso31662
+  indexedCountry['is_independent'] = newCountryInfo.isindependent
+  data.countries[indexedCountry.id] = indexedCountry
+}
+
+export function DeleteCountry (countryid) {
+  let indexedCountry = 0
+  data.countries.find((element, index) => {
+    if (element.id === countryid) {
+      indexedCountry = index
+      return
+    }
+  })
+  data.countries.splice(indexedCountry, 1)
 }
 
 export function AddSubdivision (newSubdivision) {
