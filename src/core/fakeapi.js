@@ -16,7 +16,28 @@ export var data = {
         },
         {
           name: 'Quetzalten',
+          'country_id': 2,
+          code: 'Blanen'
+        }
+      ]
+    },
+    {
+      id: 1,
+      name: 'United States',
+      alpha2: 'US',
+      alpha3: 'USA',
+      code: null,
+      'iso_3166_2': null,
+      'is_independent': '1',
+      subdivisions: [
+        {
+          name: 'Virginia',
           'country_id': 1,
+          code: 'silver'
+        },
+        {
+          name: 'Maryland',
+          'country_id': 2,
           code: 'Blanen'
         }
       ]

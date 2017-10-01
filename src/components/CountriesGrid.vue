@@ -2,17 +2,21 @@
   <div class="countries">
     <ul id="countries-list" >
         <li v-for="country in countries" :key="country">
-            <router-link :to="{name:'CountryView'}">{{country}}</router-link>
+            <router-link :to="{name:'CountryView'}">{{country.name}}</router-link>
         </li>
     </ul>
   </div>
 </template>
 <script>
+import {GetCountries} from '../core/fakeapimiddleware'
+
+var countries = GetCountries()
+
 export default {
   name: 'countries',
   data () {
     return {
-      countries: ['Guatemala', 'El Salvador', 'United States of America', 'east']
+      countries: countries
     }
   }
 }

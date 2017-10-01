@@ -2,17 +2,21 @@
   <div class="subdivisions">
     <ul id="subdivisions-list" >
         <li v-for="subdivision in subdivisions" :key="subdivision">
-            <router-link :to="{name:'SubdivisionView'}">{{subdivision}}</router-link>
+            <router-link :to="{name:'SubdivisionView'}">{{subdivision.name}}</router-link>
         </li>
     </ul>
   </div>
 </template>
 <script>
+import {GetSubdivisions} from '../core/fakeapimiddleware'
+
+var subdivisions = GetSubdivisions()
+
 export default {
   name: 'subdivisions',
   data () {
     return {
-      subdivisions: ['peten', 'mixco', 'quetzaltenango']
+      subdivisions: subdivisions
     }
   }
 }

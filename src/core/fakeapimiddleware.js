@@ -5,8 +5,16 @@ var state = {
   subdivisionId: 0
 }
 
+export function GetCountries () {
+  return data.countries
+}
+
 export function GetCountry () {
   return data.countries[state.countryId]
+}
+
+export function GetSubdivisions () {
+  return data.countries[state.countryId].subdivisions
 }
 
 export function GetSubdivision () {
