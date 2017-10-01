@@ -6,6 +6,7 @@
     <p>Code: {{computedCountry.code}}</p>
     <p>Is independent? {{computedCountry['is_independent']}}</p>
     <p>Iso: {{computedCountry['iso_3166_2']}}</p>
+    <router-link :to="{name:'EditCountryView', params:{countryid: computedCountry.id}}">Edit</router-link>
     <router-link :to="{name:'SubdivisionsGrid'}">View Subdivisions</router-link>
     <router-link :to="{name:'CountriesGrid'}">Back To Countries</router-link>
   </div>
@@ -17,7 +18,7 @@ export default {
   props: ['countryid'],
   computed: {
     computedCountry: function () {
-      return GetCountry(this.countryid - 1)
+      return GetCountry(this.countryid)
     }
   }
 }
