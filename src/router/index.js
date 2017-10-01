@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import CountriesGrid from '@/components/countries/CountriesGrid'
 import CountryView from '@/components/countries/CountryView'
+import EditCountryView from '@/components/countries/EditCountryView'
 import AddCountryView from '@/components/countries/AddCountryView'
 import SubdivisionsGrid from '@/components/subdivisions/SubdivisionsGrid'
 import SubdivisionView from '@/components/subdivisions/SubdivisionView'
@@ -25,6 +26,12 @@ export default new Router({
       path: '/countries/:countryid',
       name: 'CountryView',
       component: CountryView,
+      props: (route) => ({countryid: route.params.countryid})
+    },
+    {
+      path: '/countries/:countryid/Edit',
+      name: 'EditCountryView',
+      component: EditCountryView,
       props: (route) => ({countryid: route.params.countryid})
     },
     {
