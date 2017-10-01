@@ -3,7 +3,8 @@
     <p>{{name}}</p>
     <p>{{alpha2}}</p>
     <p>{{alpha3}}</p>
-    <router-link to="/">Back To Country</router-link>
+    <router-link :to="{name:'SubdivisionsGrid'}">View Subdivisions</router-link>
+    <router-link :to="{name:'CountriesGrid'}">Back To Countries</router-link>
   </div>
 </template>
 <script>

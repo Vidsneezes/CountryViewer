@@ -2,7 +2,7 @@
   <div class="subdivisions">
     <ul id="subdivisions-list" >
         <li v-for="subdivision in subdivisions" :key="subdivision">
-            <router-link to="subdivisonid">{{subdivision}}</router-link>
+            <router-link :to="{name:'SubdivisionView'}">{{subdivision}}</router-link>
         </li>
     </ul>
   </div>
