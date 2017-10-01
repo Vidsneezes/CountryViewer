@@ -16,6 +16,16 @@ export function GetCountry (id) {
   return country
 }
 
+export function GetNextCountryCount (countryid) {
+  let max = 0
+  data.countries.subdivisions.forEach((element) => {
+    if (element.id > max) {
+      max = element
+    }
+  })
+  return max
+}
+
 export function AddCountry (newCountry) {
   data.countries.push({
     id: data.countries.length + 1,
