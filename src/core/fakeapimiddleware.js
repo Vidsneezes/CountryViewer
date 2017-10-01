@@ -75,7 +75,8 @@ export function DeleteSubdivision (countryid, subdivisionid) {
 }
 
 export function GetSubdivisions (countryid) {
-  return data.countries[countryid].subdivisions
+  let country = GetCountry(countryid)
+  return country.subdivisions
 }
 
 export function GetSubdivision (countryid, subdivisionid) {

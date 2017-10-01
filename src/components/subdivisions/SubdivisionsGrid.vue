@@ -11,13 +11,13 @@
   </div>
 </template>
 <script>
-import {GetLastCountry} from '../../core/fakeapimiddleware'
+import {GetSubdivisions} from '../../core/fakeapimiddleware'
 export default {
   name: 'subdivisions',
   props: ['countryid'],
   computed: {
     country: function () {
-      return GetLastCountry()
+      return GetSubdivisions(this.countryid)
     }
   }
 }
