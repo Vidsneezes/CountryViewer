@@ -56,6 +56,27 @@ export function DeleteCountry (countryid) {
   data.countries.splice(indexedCountry, 1)
 }
 
+export function GetLastCountry () {
+  return data.countries[state.countryId]
+}
+
+export function GetSubdivisions () {
+  let country = GetCountry(state.countryId)
+  return country.subdivisions
+}
+
+export function GetSubdivision (id) {
+  let country = GetCountry(state.countryId)
+  console.log(country)
+  let indexedSub = country.subdivisions.find((element) => {
+    if (element.id === id) {
+      return element
+    }
+  })
+  state.subdivisionId = indexedSub.id
+  return indexedSub
+}
+
 export function AddSubdivision (newSubdivision) {
   data.countries[state.countryId].subdivisions.push({
     id: data.countries[state.countryId].subdivisions.length + 1,
@@ -76,18 +97,3 @@ export function DeleteSubdivision (subdivisionid) {
   let indexedSub = subdivisionid - 1
   data.countries[state.countryId].subdivisions.splice(indexedSub, 1)
 }
-
-export function GetLastCountry () {
-  return data.countries[state.countryId]
-}
-
-export function GetSubdivisions () {
-  return data.countries[state.countryId].subdivisions
-}
-
-export function GetSubdivision (id) {
-  let indexedSub = id - 1
-  state.subdivisionId = id
-  return data.countries[state.countryId].subdivisions[indexedSub]
-}
-
