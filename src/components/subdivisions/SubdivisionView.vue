@@ -1,6 +1,7 @@
 <template>
   <div class="subdivision">
     <p>{{computedSubdivision.name}}</p>
+    <p>{{computedSubdivision.code}}</p>
     <router-link :to="{name:'SubdivisionsGrid'}">Back To Subdivisions</router-link>
   </div>
 </template>
