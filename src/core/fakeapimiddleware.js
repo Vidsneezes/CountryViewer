@@ -16,7 +16,7 @@ export function GetCountry (id) {
   return country
 }
 
-export function GetNextCountryCount (countryid) {
+export function GetNextCountryCount () {
   let max = 0
   data.countries.subdivisions.forEach((element) => {
     if (element.id > max) {
@@ -27,8 +27,9 @@ export function GetNextCountryCount (countryid) {
 }
 
 export function AddCountry (newCountry) {
+  let nextCount = GetNextCountryCount()
   data.countries.push({
-    id: data.countries.length + 1,
+    id: nextCount + 1,
     name: newCountry.name,
     alpha2: newCountry.alpha2,
     alpha3: newCountry.alpha3,
@@ -38,18 +39,20 @@ export function AddCountry (newCountry) {
     subdivisions: [
     ]
   })
-  return data.countries.length
+  return nextCount + 1
 }
 
 export function EditCountry (newCountryInfo, countryid) {
-  let indexedCountry = GetCountry(countryid)
-  indexedCountry.name = newCountryInfo.name
-  indexedCountry.alpha2 = newCountryInfo.alpha2
-  indexedCountry.alpha3 = newCountryInfo.alpha3
-  indexedCountry.code = newCountryInfo.code
-  indexedCountry['iso_3166_2'] = newCountryInfo.iso31662
-  indexedCountry['is_independent'] = newCountryInfo.isindependent
-  data.countries[indexedCountry.id] = indexedCountry
+  let indexedCountry = {
+    name: newCountryInfo.name,
+    alpha2: newCountryInfo.alpha2,
+    alpha3: newCountryInfo.alpha3,
+    code: newCountryInfo.code,
+    'iso_3166_2': newCountryInfo.iso31662,
+    'is_independent': newCountryInfo.isindependent
+  }
+  let countryIndex = GetCountryIndex(countryid)
+  data.countries[countryIndex] = indexedCountry
 }
 
 export function DeleteCountry (countryid) {
