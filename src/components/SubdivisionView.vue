@@ -1,18 +1,22 @@
 <template>
-  <div class="country">
+  <div class="subdivision">
     <p>{{name}}</p>
     <p>{{code}}</p>
     <router-link :to="{name:'CountryView'}">Back To Country</router-link>
   </div>
 </template>
 <script>
+import {GetSubdivision} from '../core/fakeapimiddleware'
+
+var subdivision = GetSubdivision()
+
 export default {
-  name: 'country',
+  name: 'subdivision',
   data () {
     return {
       id: 1,
-      name: 'Peten',
-      code: 'Silve'
+      name: subdivision.name,
+      code: subdivision.code
     }
   }
 }

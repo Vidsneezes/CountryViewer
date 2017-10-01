@@ -8,15 +8,19 @@
   </div>
 </template>
 <script>
+import {GetCountry} from '../core/fakeapimiddleware'
+
+var country = GetCountry()
+
 export default {
   name: 'country',
   data () {
     return {
-      id: 1,
-      name: 'Guatemala',
-      alpha2: 'GT',
-      alpha3: 'GUA',
-      code: null
+      id: country.id,
+      name: country.name,
+      alpha2: country.alpha2,
+      alpha3: country.alpha3,
+      code: country.code
     }
   }
 }
