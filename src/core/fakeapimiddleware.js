@@ -53,6 +53,27 @@ export function DeleteCountry (countryid) {
   data.countries.splice(indexedCountry, 1)
 }
 
+export function GetCountryIndex (countryid) {
+  let realIndex = -1
+  data.countries.find((element, index) => {
+    if (element.id === countryid) {
+      realIndex = index
+      return
+    }
+  })
+  return realIndex
+}
+
+export function GetSubdivisionIndex (countryIndex, subdivisionid) {
+  let realIndex = -1
+  data.countries[countryIndex].subdivisions.find((element, index) => {
+    if (element.id === countryIndex) {
+      realIndex = index
+    }
+  })
+  return realIndex
+}
+
 export function AddSubdivision (countryid, newSubdivision) {
   data.countries[countryid].subdivisions.push({
     id: data.countries[countryid].subdivisions.length + 1,
@@ -64,9 +85,12 @@ export function AddSubdivision (countryid, newSubdivision) {
 }
 
 export function EditSubdivision (countryid, newSubInfo, subdivisionid) {
-  let indexedSub = subdivisionid - 1
-  data.countries[countryid].subdivisions[indexedSub].name = newSubInfo.name
-  data.countries[countryid].subdivisions[indexedSub].code = newSubInfo.code
+  let indexedCountry = GetCountryIndex(countryid)
+  let indexedSubdivision = GetSubdivisionIndex(indexedCountry, subdivisionid)
+  let subdivision = GetSubdivision(countryid, subdivisionid)
+  subdivision.name = newSubInfo.name
+  subdivision.code = newSubInfo.code
+  data.countries[indexedCountry].subdivisions[indexedSubdivision] = subdivision
 }
 
 export function DeleteSubdivision (countryid, subdivisionid) {

@@ -22,12 +22,12 @@ export default {
   },
   methods: {
     save: function () {
-      EditSubdivision(this.$data, this.subdivisionid)
-      this.$router.push({name: 'SubdivisionView', params: {subdivisionid: this.subdivisionid}})
+      EditSubdivision(this.countryid, this.$data, this.subdivisionid)
+      this.$router.push({name: 'SubdivisionView', params: {countryid: this.countryid, subdivisionid: this.subdivisionid}})
     },
     deleteSubdivision: function () {
       DeleteSubdivision(this.subdivisionid)
-      this.$router.push({name: 'SubdivisionsGrid'})
+      this.$router.push({name: 'SubdivisionsGrid', params: {countryid: this.countryid}})
     }
   },
   computed: {
