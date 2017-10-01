@@ -2,7 +2,7 @@
   <div class="subdivision">
     <p>{{subdivision.name}}</p>
     <p>{{subdivision.code}}</p>
-    <router-link :to="{name:'EditSubdivisionView', params:{countryid: country_id, subdivisionid: subdivision.id}}">Edit</router-link>
+    <router-link :to="{name:'EditSubdivisionView', params:{countryid: country_id, subdivisionid: subdivision_id}}">Edit</router-link>
     <router-link :to="{name:'SubdivisionsGrid', params:{countryid: country_id}}">Back To Subdivisions</router-link>
   </div>
 </template>
@@ -18,14 +18,15 @@ export default {
       subdivision = GetSubdivision(this.countryid, this.subdivisionid)
       if (subdivision === undefined) {
         this.$router.push({name: 'PageNotFound404'})
-        return {subdivision: {id: '', name: '', code: ''}}
+        subdivision = {subdivision: {id: '', name: '', code: ''}}
       }
     } else {
       this.$router.push({name: 'PageNotFound404'})
-      return {subdivision: {id: '', name: '', code: ''}}
+      subdivision = {subdivision: {id: '', name: '', code: ''}}
     }
     return {
       country_id: this.countryid,
+      subdivision_id: this.subdivisionid,
       subdivision: subdivision
     }
   }

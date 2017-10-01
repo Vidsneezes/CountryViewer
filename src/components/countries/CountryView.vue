@@ -6,8 +6,8 @@
     <p>Code: {{country.code}}</p>
     <p>Is independent? {{country.is_independent}}</p>
     <p>Iso: {{country.iso_3166_2}}</p>
-    <router-link :to="{name:'EditCountryView', params:{countryid: country.id}}">Edit</router-link>
-    <router-link :to="{name:'SubdivisionsGrid', params:{countryid: country.id}}">View Subdivisions</router-link>
+    <router-link :to="{name:'EditCountryView', params:{countryid: country_id}}">Edit</router-link>
+    <router-link :to="{name:'SubdivisionsGrid', params:{countryid: country_id}}">View Subdivisions</router-link>
     <router-link :to="{name:'CountriesGrid'}">Back To Countries</router-link>
   </div>
 </template>
@@ -17,13 +17,14 @@ export default {
   name: 'country',
   props: ['countryid'],
   data () {
-    let gCountry = GetCountry(this.$route.params.countryid)
-    if (gCountry === undefined) {
+    let gcountry = GetCountry(this.countryid)
+    if (gcountry === undefined) {
       this.$router.push({name: 'PageNotFound404'})
-      return {country: {name: '', alpha2: '', alpha3: '', code: '', is_independent: 'false', iso_3166_2: ''}}
+      gcountry = {name: '', alpha2: '', alpha3: '', code: '', is_independent: '', iso_3166_2: ''}
     }
     return {
-      country: gCountry
+      country_id: this.countryid,
+      country: gcountry
     }
   }
 }
