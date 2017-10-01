@@ -26,6 +26,7 @@ export function AddCountry (newCountry) {
     subdivisions: [
     ]
   })
+  console.log(data.countries[data.countries.length - 1])
   return data.countries.length
 }
 

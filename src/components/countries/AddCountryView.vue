@@ -3,6 +3,9 @@
     <input v-model="name" placeholder="Country Name" type="text"/>
     <input v-model="alpha2" placeholder="alpha2" type="text" maxlength="2"/>
     <input v-model="alpha3" placeholder="alpha3" type="text" maxlength="3"/>
+    <input v-model="code" placeholder="code" type="text"/>
+    Is Independent? <input v-model="is_independent" type="checkbox"/>
+    <input v-model="iso_3166_2" placeholder="Iso 3166 2" type="text"/>
     <button v-on:click='addCountry'>Add Country</button>
     <router-link :to="{name:'CountriesGrid'}">Back To Countries</router-link>
   </div>
@@ -16,7 +19,10 @@ export default {
     return {
       name: '',
       alpha2: '',
-      alpha3: ''
+      alpha3: '',
+      code: '',
+      'is_independent': false,
+      'iso_3166_2': ''
     }
   },
   methods: {
