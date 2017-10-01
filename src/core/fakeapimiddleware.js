@@ -1,10 +1,5 @@
 import {data} from './fakeapi'
 
-var state = {
-  countryId: 0,
-  subdivisionId: 0
-}
-
 export function GetCountries () {
   return data.countries
 }
@@ -18,7 +13,6 @@ export function GetCountry (id) {
     }
   })
   let country = data.countries[indexedCountry]
-  state.countryId = country.id
   return country
 }
 
@@ -59,38 +53,33 @@ export function DeleteCountry (countryid) {
   data.countries.splice(indexedCountry, 1)
 }
 
-export function AddSubdivision (newSubdivision) {
-  data.countries[state.countryId].subdivisions.push({
-    id: data.countries[state.countryId].subdivisions.length + 1,
+export function AddSubdivision (countryid, newSubdivision) {
+  data.countries[countryid].subdivisions.push({
+    id: data.countries[countryid].subdivisions.length + 1,
     name: newSubdivision.name,
     code: newSubdivision.code,
-    'country_id': state.countryId + 1
+    'country_id': countryid + 1
   })
-  return data.countries[state.countryId].subdivisions.length
+  return data.countries[countryid].subdivisions.length
 }
 
-export function EditSubdivision (newSubInfo, subdivisionid) {
+export function EditSubdivision (countryid, newSubInfo, subdivisionid) {
   let indexedSub = subdivisionid - 1
-  data.countries[state.countryId].subdivisions[indexedSub].name = newSubInfo.name
-  data.countries[state.countryId].subdivisions[indexedSub].code = newSubInfo.code
+  data.countries[countryid].subdivisions[indexedSub].name = newSubInfo.name
+  data.countries[countryid].subdivisions[indexedSub].code = newSubInfo.code
 }
 
-export function DeleteSubdivision (subdivisionid) {
+export function DeleteSubdivision (countryid, subdivisionid) {
   let indexedSub = subdivisionid - 1
-  data.countries[state.countryId].subdivisions.splice(indexedSub, 1)
+  data.countries[countryid].subdivisions.splice(indexedSub, 1)
 }
 
-export function GetLastCountry () {
-  return data.countries[state.countryId]
+export function GetSubdivisions (countryid) {
+  return data.countries[countryid].subdivisions
 }
 
-export function GetSubdivisions () {
-  return data.countries[state.countryId].subdivisions
-}
-
-export function GetSubdivision (id) {
-  let indexedSub = id - 1
-  state.subdivisionId = id
-  return data.countries[state.countryId].subdivisions[indexedSub]
+export function GetSubdivision (countryid, subdivisionid) {
+  let indexedSub = subdivisionid - 1
+  return data.countries[countryid].subdivisions[indexedSub]
 }
 
