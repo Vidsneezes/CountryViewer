@@ -67,21 +67,23 @@ export function GetCountryIndex (countryid) {
 export function GetSubdivisionIndex (countryIndex, subdivisionid) {
   let realIndex = -1
   data.countries[countryIndex].subdivisions.find((element, index) => {
-    if (element.id === countryIndex) {
+    if (element.id === subdivisionid) {
       realIndex = index
+      return
     }
   })
   return realIndex
 }
 
 export function AddSubdivision (countryid, newSubdivision) {
-  data.countries[countryid].subdivisions.push({
-    id: data.countries[countryid].subdivisions.length + 1,
+  let indexedCountry = GetCountryIndex(countryid)
+  data.countries[indexedCountry].subdivisions.push({
+    id: data.countries[indexedCountry].subdivisions.length + 1,
     name: newSubdivision.name,
     code: newSubdivision.code,
-    'country_id': countryid + 1
+    'country_id': countryid
   })
-  return data.countries[countryid].subdivisions.length
+  return data.countries[indexedCountry].subdivisions.length + 1
 }
 
 export function EditSubdivision (countryid, newSubInfo, subdivisionid) {
@@ -94,8 +96,9 @@ export function EditSubdivision (countryid, newSubInfo, subdivisionid) {
 }
 
 export function DeleteSubdivision (countryid, subdivisionid) {
-  let indexedSub = subdivisionid - 1
-  data.countries[countryid].subdivisions.splice(indexedSub, 1)
+  let indexedCountry = GetCountryIndex(countryid)
+  let indexedSubdivision = GetSubdivisionIndex(indexedCountry, subdivisionid)
+  data.countries[indexedCountry].subdivisions.splice(indexedSubdivision, 1)
 }
 
 export function GetSubdivisions (countryid) {

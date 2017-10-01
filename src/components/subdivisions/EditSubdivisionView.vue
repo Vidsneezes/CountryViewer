@@ -26,7 +26,7 @@ export default {
       this.$router.push({name: 'SubdivisionView', params: {countryid: this.countryid, subdivisionid: this.subdivisionid}})
     },
     deleteSubdivision: function () {
-      DeleteSubdivision(this.subdivisionid)
+      DeleteSubdivision(this.countryid, this.subdivisionid)
       this.$router.push({name: 'SubdivisionsGrid', params: {countryid: this.countryid}})
     }
   },

@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     addSubdivision: function () {
-      let lastIndex = AddSubdivision(this.$data)
+      let lastIndex = AddSubdivision(this.countryid, this.$data)
       this.$router.push({name: 'SubdivisionView', params: {countryid: this.countryid, subdivisionid: lastIndex}})
     }
   }
