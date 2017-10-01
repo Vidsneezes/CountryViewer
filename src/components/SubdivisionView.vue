@@ -1,5 +1,6 @@
 <template>
   <div class="subdivision">
+    <p>{{computedSubdivision.name}}</p>
     <router-link :to="{name:'SubdivisionsGrid'}">Back To Subdivisions</router-link>
   </div>
 </template>
@@ -9,7 +10,7 @@ export default {
   name: 'subdivision',
   props: ['subdivisionid'],
   computed: {
-    computedCountry: function () {
+    computedSubdivision: function () {
       return GetSubdivision(this.subdivisionid - 1)
     }
   }
