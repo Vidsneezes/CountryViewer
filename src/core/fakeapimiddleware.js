@@ -43,16 +43,13 @@ export function AddCountry (newCountry) {
 }
 
 export function EditCountry (newCountryInfo, countryid) {
-  let indexedCountry = {
-    name: newCountryInfo.name,
-    alpha2: newCountryInfo.alpha2,
-    alpha3: newCountryInfo.alpha3,
-    code: newCountryInfo.code,
-    'iso_3166_2': newCountryInfo.iso31662,
-    'is_independent': newCountryInfo.isindependent
-  }
   let countryIndex = GetCountryIndex(countryid)
-  data.countries[countryIndex] = indexedCountry
+  data.countries[countryIndex].name = newCountryInfo.name
+  data.countries[countryIndex].alpha2 = newCountryInfo.alpha2
+  data.countries[countryIndex].alpha3 = newCountryInfo.alpha3
+  data.countries[countryIndex].code = newCountryInfo.code
+  data.countries[countryIndex]['iso_3166_2'] = newCountryInfo.iso31662
+  data.countries[countryIndex]['is_independent'] = newCountryInfo.isindependent
 }
 
 export function DeleteCountry (countryid) {
