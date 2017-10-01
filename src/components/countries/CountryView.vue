@@ -18,7 +18,11 @@ export default {
   props: ['countryid'],
   computed: {
     computedCountry: function () {
-      return GetCountry(this.countryid)
+      let country = GetCountry(this.countryid)
+      if (country === null) {
+        return {name: '', alpha2: '', alpha3: '', code: '', is_independent: 'false', iso_3166_2: ''}
+      }
+      return country
     }
   }
 }
