@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import CountriesGrid from '@/components/countries/CountriesGrid'
 import CountryView from '@/components/countries/CountryView'
+import AddCountryView from '@/components/countries/AddCountryView'
 import SubdivisionsGrid from '@/components/subdivisions/SubdivisionsGrid'
 import SubdivisionView from '@/components/subdivisions/SubdivisionView'
 
@@ -34,6 +35,11 @@ export default new Router({
       name: 'SubdivisionView',
       component: SubdivisionView,
       props: (route) => ({subdivisionid: route.params.subdivisionid})
+    },
+    {
+      path: '/AddCountry',
+      name: 'AddCountryView',
+      component: AddCountryView
     }
   ]
 })

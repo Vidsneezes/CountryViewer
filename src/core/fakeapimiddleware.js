@@ -14,7 +14,7 @@ export function GetCountry (id) {
   return data.countries[id]
 }
 
-export function AddCoutry () {
+export function AddCountry () {
   data.countries.push({
     id: 3,
     name: 'Mexico',
@@ -39,6 +39,7 @@ export function AddCoutry () {
     ]
   })
   console.log(data.countries)
+  return 0
 }
 
 export function GetLastCountry () {

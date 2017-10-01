@@ -5,6 +5,7 @@
             <router-link :to="{name:'CountryView' , params:{countryid: country.id}}">{{country.name}}</router-link>
         </li>
     </ul>
+        <router-link :to="{name:'AddCountryView'}">Add New Country</router-link>
   </div>
 </template>
 <script>

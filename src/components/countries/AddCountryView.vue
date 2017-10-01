@@ -1,7 +1,6 @@
 <template>
   <div class="country">
-    <p>{{computedCountry.name}}</p>
-    <router-link :to="{name:'CountriesGrid'}" v-on:click='computedCountry'>Add Country</router-link>
+    <button v-on:click='addCountry'>Add Country</button>
     <router-link :to="{name:'CountriesGrid'}">Back To Countries</router-link>
   </div>
 </template>
@@ -15,9 +14,10 @@ export default {
       name: 'yo'
     }
   },
-  computed: {
-    computedCountry: function () {
-      return AddCountry
+  methods: {
+    addCountry: function () {
+      AddCountry()
+      this.$router.push({name: 'CountryView', params: {countryid: 3}})
     }
   }
 }
