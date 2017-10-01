@@ -1,14 +1,17 @@
 <template>
   <div class="country">
+    <b-nav fill class="nav-bar">
+      <b-nav-item Active><b-link :to="{name:'CountriesGrid'}">Countries</b-link></b-nav-item>
+      <b-nav-item><b-link :to="{name:'SubdivisionsGrid', params:{countryid: country_id}}">View Subdivisions</b-link></b-nav-item>
+      <b-nav-item><b-link :to="{name:'EditCountryView', params:{countryid: country_id}}">Edit</b-link></b-nav-item>
+    </b-nav> 
     <p>Name: {{country.name}}</p>
     <p>Alpha2: {{country.alpha2}}</p>
     <p>Alpha3: {{country.alpha3}}</p>
     <p>Code: {{country.code}}</p>
     <p>Is independent? {{country.is_independent}}</p>
     <p>Iso: {{country.iso_3166_2}}</p>
-    <router-link :to="{name:'EditCountryView', params:{countryid: country_id}}">Edit</router-link>
-    <router-link :to="{name:'SubdivisionsGrid', params:{countryid: country_id}}">View Subdivisions</router-link>
-    <router-link :to="{name:'CountriesGrid'}">Back To Countries</router-link>
+    
   </div>
 </template>
 <script>
@@ -42,7 +45,13 @@ li {
   display: inline-block;
   margin: 0 10px;
 }
-a {
-  color: green;
+.nav-bar{
+  background: lightseagreen;
+  padding-bottom: 15px;
+  padding-top: 10px;
+  
+}
+.nav-bar a {
+  color: white;
 }
 </style>
