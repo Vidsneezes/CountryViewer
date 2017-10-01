@@ -10,7 +10,7 @@
 import {GetSubdivision} from '../../core/fakeapimiddleware'
 export default {
   name: 'subdivision',
-  props: ['subdivisionid'],
+  props: ['countryid', 'subdivisionid'],
   computed: {
     computedSubdivision: function () {
       return GetSubdivision(this.subdivisionid)

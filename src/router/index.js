@@ -66,13 +66,13 @@ export default new Router({
       component: AddCountryView
     },
     {
-      path: ATC + SUBS +'/AddSubdivision',
+      path: ATC + SUBS + '/AddSubdivision',
       name: 'AddSubdivisionView',
       component: AddSubdivisionView,
       props: (route) => ({countryid: route.params.countryid})
     },
     {
-      path: CISI +'/Edit',
+      path: CISI + '/Edit',
       name: 'EditSubdivisionView',
       component: EditSubdivisionView,
       props: (route) => ({countryid: route.params.countryid, subdivisionid: route.params.subdivisionid})

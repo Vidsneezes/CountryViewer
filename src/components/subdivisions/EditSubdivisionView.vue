@@ -11,7 +11,7 @@
 import {EditSubdivision, GetSubdivision, DeleteSubdivision} from '../../core/fakeapimiddleware'
 export default {
   name: 'country',
-  props: ['subdivisionid'],
+  props: ['countryid', 'subdivisionid'],
   data () {
     let subdivision = GetSubdivision(this.subdivisionid)
     return {

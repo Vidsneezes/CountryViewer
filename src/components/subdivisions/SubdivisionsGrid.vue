@@ -14,6 +14,7 @@
 import {GetLastCountry} from '../../core/fakeapimiddleware'
 export default {
   name: 'subdivisions',
+  props: ['countryid'],
   computed: {
     country: function () {
       return GetLastCountry()

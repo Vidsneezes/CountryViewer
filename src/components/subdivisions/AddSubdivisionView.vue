@@ -10,6 +10,7 @@
 import {AddSubdivision} from '../../core/fakeapimiddleware'
 export default {
   name: 'country',
+  props: ['countryid'],
   data () {
     return {
       name: '',
