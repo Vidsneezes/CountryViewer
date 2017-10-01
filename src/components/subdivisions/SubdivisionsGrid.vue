@@ -1,12 +1,12 @@
 <template>
   <div class="subdivisions">
     <ul id="subdivisions-list" >
-        <li v-for="subdivision in country.subdivisions" :key="subdivision.id">
+        <li v-for="subdivision in subdivisions" :key="subdivision.id">
             <router-link :to="{name:'SubdivisionView', params:{subdivisionid: subdivision.id}}">{{subdivision.name}}</router-link>
         </li>
     </ul>
     <router-link :to="{name:'AddSubdivisionView'}">Add New Subdivision</router-link>
-    <router-link :to="{name:'CountryView', params:{countryid: country.id}}">Back To Country</router-link>
+    <router-link :to="{name:'CountryView', params:{countryid: countryID}}">Back To Country</router-link>
     <router-link :to="{name:'CountriesGrid'}">Back To Countries</router-link>
   </div>
 </template>
@@ -15,9 +15,18 @@ import {GetSubdivisions} from '../../core/fakeapimiddleware'
 export default {
   name: 'subdivisions',
   props: ['countryid'],
+  data () {
+    return {
+      countryID: this.countryid
+    }
+  },
   computed: {
-    country: function () {
-      return GetSubdivisions(this.countryid)
+    subdivisions: function () {
+      let subs = GetSubdivisions(this.countryid)
+      if (subs === null) {
+        subs = []
+      }
+      return subs
     }
   }
 }
