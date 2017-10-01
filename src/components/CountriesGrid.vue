@@ -1,8 +1,8 @@
 <template>
   <div class="countries">
     <ul id="countries-list" >
-        <li v-for="country in countries" :key="country">
-            <router-link :to="{name:'CountryView'}">{{country.name}}</router-link>
+        <li v-for="country in countries" :key="country.id">
+            <router-link :to="{name:'CountryView' , params:{countryid: country.id}}">{{country.name}}</router-link>
         </li>
     </ul>
   </div>

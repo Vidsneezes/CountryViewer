@@ -2,7 +2,7 @@
   <div class="subdivision">
     <p>{{name}}</p>
     <p>{{code}}</p>
-    <router-link :to="{name:'CountryView'}">Back To Country</router-link>
+    <router-link :to="{name:'SubdivisionsGrid'}">Back To Subdivisions</router-link>
   </div>
 </template>
 <script>

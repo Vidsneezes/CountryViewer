@@ -9,15 +9,17 @@ export function GetCountries () {
   return data.countries
 }
 
-export function GetCountry () {
-  return data.countries[state.countryId]
+export function GetCountry (id) {
+  state.countryId = id
+  return data.countries[id]
 }
 
 export function GetSubdivisions () {
   return data.countries[state.countryId].subdivisions
 }
 
-export function GetSubdivision () {
-  return data.countries[state.countryId].subdivisions[state.subdivisionId]
+export function GetSubdivision (id) {
+  state.subdivisionId = id
+  return data.countries[state.countryId].subdivisions[id]
 }
 

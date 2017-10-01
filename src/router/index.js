@@ -19,17 +19,18 @@ export default new Router({
       component: CountriesGrid
     },
     {
-      path: '/countries/countryid',
+      path: '/countries/:countryid',
       name: 'CountryView',
-      component: CountryView
+      component: CountryView,
+      props: (route) => ({countryid: route.params.countryid})
     },
     {
-      path: '/countries/countryid/subdivisions',
+      path: '/countries/:countryid/subdivisions',
       name: 'SubdivisionsGrid',
       component: SubdivisionsGrid
     },
     {
-      path: '/countries/countryid/subdivisions/subdivisionid',
+      path: '/countries/:countryid/subdivisions/:subdivisionid',
       name: 'SubdivisionView',
       component: SubdivisionView
     }

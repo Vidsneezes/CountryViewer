@@ -22,7 +22,7 @@ export var data = {
       ]
     },
     {
-      id: 1,
+      id: 2,
       name: 'United States',
       alpha2: 'US',
       alpha3: 'USA',
