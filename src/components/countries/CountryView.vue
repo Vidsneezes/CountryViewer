@@ -1,6 +1,11 @@
 <template>
   <div class="country">
-    <p>{{computedCountry.name}}</p>
+    <p>Name: {{computedCountry.name}}</p>
+    <p>Alpha2: {{computedCountry.alpha2}}</p>
+    <p>Alpha3: {{computedCountry.alpha3}}</p>
+    <p>Code: {{computedCountry.code}}</p>
+    <p>Is independent? {{computedCountry['is_independent']}}</p>
+    <p>Iso: {{computedCountry['iso_3166_2']}}</p>
     <router-link :to="{name:'SubdivisionsGrid'}">View Subdivisions</router-link>
     <router-link :to="{name:'CountriesGrid'}">Back To Countries</router-link>
   </div>

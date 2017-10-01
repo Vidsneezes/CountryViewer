@@ -20,14 +20,23 @@ export function AddCountry (newCountry) {
     name: newCountry.name,
     alpha2: newCountry.alpha2,
     alpha3: newCountry.alpha3,
-    code: null,
-    'iso_3166_2': null,
-    'is_independent': '1',
+    code: newCountry.code,
+    'iso_3166_2': newCountry['iso_3166_2'],
+    'is_independent': newCountry['is_independent'],
     subdivisions: [
     ]
   })
-  console.log(data.countries[data.countries.length - 1])
   return data.countries.length
+}
+
+export function AddSubdivision (newSubdivision) {
+  data.countries[state.countryId].subdivisions.push({
+    id: data.countries[state.countryId].subdivisions.length + 1,
+    name: newSubdivision.name,
+    code: newSubdivision.code,
+    'country_id': state.countryId + 1
+  })
+  return data.countries[state.countryId].subdivisions.length
 }
 
 export function GetLastCountry () {
