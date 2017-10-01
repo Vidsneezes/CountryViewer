@@ -1,28 +1,32 @@
 <template>
   <div class="subdivision">
-    <p>{{computedSubdivision.name}}</p>
-    <p>{{computedSubdivision.code}}</p>
-    <router-link :to="{name:'EditSubdivisionView', params:{countryid: country_id, subdivisionid: computedSubdivision.id}}">Edit</router-link>
+    <p>{{subdivision.name}}</p>
+    <p>{{subdivision.code}}</p>
+    <router-link :to="{name:'EditSubdivisionView', params:{countryid: country_id, subdivisionid: subdivision.id}}">Edit</router-link>
     <router-link :to="{name:'SubdivisionsGrid', params:{countryid: country_id}}">Back To Subdivisions</router-link>
   </div>
 </template>
 <script>
-import {GetSubdivision} from '../../core/fakeapimiddleware'
+import {GetSubdivision, GetCountry} from '../../core/fakeapimiddleware'
 export default {
   name: 'subdivision',
   props: ['countryid', 'subdivisionid'],
   data () {
-    return {
-      country_id: this.countryid
-    }
-  },
-  computed: {
-    computedSubdivision: function () {
-      let subdivision = GetSubdivision(this.countryid, this.subdivisionid)
-      if (subdivision === null) {
-        return {name: '', code: ''}
+    let country = GetCountry(this.countryid)
+    let subdivision
+    if (country !== undefined) {
+      subdivision = GetSubdivision(this.countryid, this.subdivisionid)
+      if (subdivision === undefined) {
+        this.$router.push({name: 'PageNotFound404'})
+        return {subdivision: {id: '', name: '', code: ''}}
       }
-      return GetSubdivision(this.countryid, this.subdivisionid)
+    } else {
+      this.$router.push({name: 'PageNotFound404'})
+      return {subdivision: {id: '', name: '', code: ''}}
+    }
+    return {
+      country_id: this.countryid,
+      subdivision: subdivision
     }
   }
 }
