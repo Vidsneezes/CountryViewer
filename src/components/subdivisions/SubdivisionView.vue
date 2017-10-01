@@ -1,8 +1,8 @@
 <template>
   <div class="subdivision">
     <b-nav fill class="nav-bar">
-      <b-nav-item><b-link :to="{name:'EditSubdivisionView', params:{countryid: country_id, subdivisionid: subdivision_id}}">Edit</b-link></b-nav-item>
-      <b-nav-item><b-link :to="{name:'SubdivisionsGrid', params:{countryid: country_id}}">Back To Subdivisions</b-link></b-nav-item>
+      <b-nav-item :to="{name:'EditSubdivisionView', params:{countryid: country_id, subdivisionid: subdivision_id}}">Edit</b-nav-item>
+      <b-nav-item :to="{name:'SubdivisionsGrid', params:{countryid: country_id}}">Back To Subdivisions</b-nav-item>
     </b-nav> 
     <div class="mx-auto" style="width: 400px;">
       <b-container class="country-view">

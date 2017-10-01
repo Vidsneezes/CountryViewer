@@ -1,9 +1,9 @@
 <template>
   <div class="country">
-    <b-nav fill tabs class="nav-bar">
-      <b-nav-item Active><b-link :to="{name:'CountriesGrid'}">Countries</b-link></b-nav-item>
-      <b-nav-item><b-link :to="{name:'SubdivisionsGrid', params:{countryid: country_id}}">View Subdivisions</b-link></b-nav-item>
-      <b-nav-item><b-link :to="{name:'EditCountryView', params:{countryid: country_id}}">Edit</b-link></b-nav-item>
+    <b-nav fill class="nav-bar">
+      <b-nav-item :to="{name:'CountriesGrid'}">Countries</b-nav-item>
+      <b-nav-item :to="{name:'SubdivisionsGrid', params:{countryid: country_id}}">View Subdivisions</b-nav-item>
+      <b-nav-item :to="{name:'EditCountryView', params:{countryid: country_id}}">Edit</b-nav-item>
     </b-nav> 
     <div class="mx-auto" style="width: 400px;">
       <b-container class="country-view">

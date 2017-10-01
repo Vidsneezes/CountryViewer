@@ -1,7 +1,7 @@
 <template>
   <div class="country">
-    <b-nav fill tabs class="nav-bar">
-      <b-nav-item Active><b-link :to="{name:'CountriesGrid'}">Back To Countries</b-link></b-nav-item>
+    <b-nav fill class="nav-bar">
+      <b-nav-item :to="{name:'CountriesGrid'}">Back To Countries</b-nav-item>
     </b-nav> 
     <b-container class="country-entry-form" style="width: 280px;">
     <b-row class="country-entry">
@@ -57,8 +57,14 @@
       <b-button variant="primary" v-on:click='save'>Save</b-button>
        </b-col>
      </b-row>
-     <b-button variant="danger" v-on:click='deleteCountry'>Delete</b-button>
+      <b-btn variant="danger" v-b-modal.modalDelete>Delete</b-btn>
      </b-container>
+     <b-modal id="modalDelete"
+             ref="modal"
+             title="Delete?"
+             @ok="deleteCountry"
+             >Are you sure you want to delete?
+    </b-modal>
   </div>
 </template>
 <script>
@@ -117,6 +123,7 @@ a {
 .nav-bar a {
   color: white;
 }
+
 .country-entry{
   margin-bottom: 20px;
   

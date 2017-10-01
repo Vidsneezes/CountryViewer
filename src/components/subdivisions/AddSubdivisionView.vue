@@ -1,7 +1,7 @@
 <template>
   <div class="country">
     <b-nav fill class="nav-bar">
-      <b-nav-item><b-link :to="{name:'SubdivisionsGrid', params:{countryid: country_id}}">Back To Subdivisions</b-link></b-nav-item>
+      <b-nav-item :to="{name:'SubdivisionsGrid', params:{countryid: country_id}}">Back To Subdivisions</b-nav-item>
     </b-nav> 
     <b-container class="country-entry-form" style="width: 280px;">
       <b-row class="country-entry">
@@ -20,7 +20,7 @@
           <input v-model="code" placeholder="Code" type="text"/>
         </b-col>
       </b-row>
-    <button v-on:click='addSubdivision'>Add Subdivision</button>
+    <b-button variant="primary" v-on:click='addSubdivision'>Add Subdivision</b-button>
     </b-container>
   </div>
 </template>

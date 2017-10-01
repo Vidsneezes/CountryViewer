@@ -1,7 +1,7 @@
 <template>
   <div class="country">
     <b-nav fill tabs class="nav-bar">
-      <b-nav-item Active><b-link :to="{name:'CountriesGrid'}">Back To Countries</b-link></b-nav-item>
+      <b-nav-item  :to="{name:'CountriesGrid'}">Back To Countries</b-nav-item>
     </b-nav> 
     <b-container class="country-entry-form" style="width: 280px;">
     <b-row class="country-entry">

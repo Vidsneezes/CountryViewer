@@ -1,13 +1,12 @@
 <template>
   <div class="countries">
     <b-nav fill class="nav-bar">
-      <b-nav-item><b-link :to="{name:'AddCountryView'}">Add New Country</b-link></b-nav-item>
+      <b-nav-item :to="{name:'AddCountryView'}">Add New Country</b-nav-item>
     </b-nav> 
     <b-row  v-for="country in countries" :key="country.id" class="b-row">
       <b-col>
         <b-card :title='country.name' class="country-card">
-          <b-button size='lg' variant='primary'>
-            <b-link :to="{name:'CountryView' , params:{countryid: country.id}}">Visit</b-link>
+          <b-button size='lg' variant='primary' :to="{name:'CountryView' , params:{countryid: country.id}}">Visit
           </b-button>
         </b-card>
       </b-col>
