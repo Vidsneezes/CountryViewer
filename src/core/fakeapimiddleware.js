@@ -20,9 +20,9 @@ export function AddCountry (newCountry) {
     name: newCountry.name,
     alpha2: newCountry.alpha2,
     alpha3: newCountry.alpha3,
-    code: null,
-    'iso_3166_2': null,
-    'is_independent': '1',
+    code: newCountry.code,
+    'iso_3166_2': newCountry['iso_3166_2'],
+    'is_independent': newCountry['is_independent'],
     subdivisions: [
     ]
   })
