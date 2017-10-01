@@ -1,30 +1,25 @@
 <template>
   <div class="country">
     <input v-model="name" placeholder="Country Name" type="text"/>
-    <input v-model="code" placeholder="code" type="text"/>
+    <input v-model="code" placeholder="Code" type="text"/>
     <button v-on:click='addSubdivision'>Add Subdivision</button>
     <router-link :to="{name:'SubdivisionsGrid'}">Back To Subdivisions</router-link>
   </div>
 </template>
 <script>
-import {AddCountry} from '../../core/fakeapimiddleware'
+import {AddSubdivision} from '../../core/fakeapimiddleware'
 export default {
   name: 'country',
-  props: ['countryid'],
   data () {
     return {
       name: '',
-      alpha2: '',
-      alpha3: '',
-      code: '',
-      'is_independent': false,
-      'iso_3166_2': ''
+      code: ''
     }
   },
   methods: {
     addSubdivision: function () {
-      let lastIndex = AddCountry(this.$data)
-      this.$router.push({name: 'CountryView', params: {countryid: lastIndex}})
+      let lastIndex = AddSubdivision(this.$data)
+      this.$router.push({name: 'SubdivisionView', params: {subdivisionid: lastIndex}})
     }
   }
 }
