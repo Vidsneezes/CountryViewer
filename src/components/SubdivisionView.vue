@@ -1,22 +1,16 @@
 <template>
   <div class="subdivision">
-    <p>{{name}}</p>
-    <p>{{code}}</p>
     <router-link :to="{name:'SubdivisionsGrid'}">Back To Subdivisions</router-link>
   </div>
 </template>
 <script>
 import {GetSubdivision} from '../core/fakeapimiddleware'
-
-var subdivision = GetSubdivision()
-
 export default {
   name: 'subdivision',
-  data () {
-    return {
-      id: 1,
-      name: subdivision.name,
-      code: subdivision.code
+  props: ['subdivisionid'],
+  computed: {
+    computedCountry: function () {
+      return GetSubdivision(this.subdivisionid - 1)
     }
   }
 }

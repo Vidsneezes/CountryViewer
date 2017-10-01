@@ -10,13 +10,15 @@ export var data = {
       'is_independent': '1',
       subdivisions: [
         {
+          id: 1,
           name: 'Peten',
           'country_id': 1,
           code: 'silver'
         },
         {
+          id: 2,
           name: 'Quetzalten',
-          'country_id': 2,
+          'country_id': 1,
           code: 'Blanen'
         }
       ]
@@ -31,11 +33,13 @@ export var data = {
       'is_independent': '1',
       subdivisions: [
         {
+          id: 1,
           name: 'Virginia',
-          'country_id': 1,
+          'country_id': 2,
           code: 'silver'
         },
         {
+          id: 2,
           name: 'Maryland',
           'country_id': 2,
           code: 'Blanen'

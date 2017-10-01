@@ -1,22 +1,21 @@
 <template>
   <div class="subdivisions">
     <ul id="subdivisions-list" >
-        <li v-for="subdivision in subdivisions" :key="subdivision">
-            <router-link :to="{name:'SubdivisionView'}">{{subdivision.name}}</router-link>
+        <li v-for="subdivision in country.subdivisions" :key="subdivision.id">
+            <router-link :to="{name:'SubdivisionView', params:{subdivisionid: subdivision.id}}">{{subdivision.name}}</router-link>
         </li>
     </ul>
+    <router-link :to="{name:'CountryView', params:{countryid: country.id}}">Back To Country</router-link>
+    <router-link :to="{name:'CountriesGrid'}">Back To Countries</router-link>
   </div>
 </template>
 <script>
-import {GetSubdivisions} from '../core/fakeapimiddleware'
-
-var subdivisions = GetSubdivisions()
-
+import {GetLastCountry} from '../core/fakeapimiddleware'
 export default {
   name: 'subdivisions',
-  data () {
-    return {
-      subdivisions: subdivisions
+  computed: {
+    country: function () {
+      return GetLastCountry()
     }
   }
 }

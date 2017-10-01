@@ -25,14 +25,15 @@ export default new Router({
       props: (route) => ({countryid: route.params.countryid})
     },
     {
-      path: '/countries/:countryid/subdivisions',
+      path: '/subdivisions',
       name: 'SubdivisionsGrid',
       component: SubdivisionsGrid
     },
     {
-      path: '/countries/:countryid/subdivisions/:subdivisionid',
+      path: '/subdivisions/:subdivisionid',
       name: 'SubdivisionView',
-      component: SubdivisionView
+      component: SubdivisionView,
+      props: (route) => ({subdivisionid: route.params.subdivisionid})
     }
   ]
 })
