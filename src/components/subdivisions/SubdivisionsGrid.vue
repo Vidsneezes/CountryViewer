@@ -10,7 +10,7 @@
   </div>
 </template>
 <script>
-import {GetLastCountry} from '../core/fakeapimiddleware'
+import {GetLastCountry} from '../../core/fakeapimiddleware'
 export default {
   name: 'subdivisions',
   computed: {

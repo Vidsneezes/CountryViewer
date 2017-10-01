@@ -5,7 +5,7 @@
   </div>
 </template>
 <script>
-import {GetSubdivision} from '../core/fakeapimiddleware'
+import {GetSubdivision} from '../../core/fakeapimiddleware'
 export default {
   name: 'subdivision',
   props: ['subdivisionid'],

@@ -8,7 +8,7 @@
   </div>
 </template>
 <script>
-import {GetCountries} from '../core/fakeapimiddleware'
+import {GetCountries} from '../../core/fakeapimiddleware'
 var countries = GetCountries()
 export default {
   name: 'countries',

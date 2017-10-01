@@ -6,7 +6,7 @@
   </div>
 </template>
 <script>
-import {GetCountry} from '../core/fakeapimiddleware'
+import {GetCountry} from '../../core/fakeapimiddleware'
 export default {
   name: 'country',
   props: ['countryid'],
