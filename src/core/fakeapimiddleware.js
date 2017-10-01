@@ -71,13 +71,15 @@ export function GetSubdivisions () {
 export function GetSubdivision (id) {
   let country = GetCountry(state.countryId)
   console.log(country)
-  let indexedSub = country.subdivisions.find((element) => {
+  let indexedSub = -1
+  country.subdivisions.find((element, index) => {
     if (element.id === id) {
-      return element
+      indexedSub = index
     }
   })
-  state.subdivisionId = indexedSub.id
-  return indexedSub
+  let sub = country.subdivisions[indexedSub]
+  state.subdivisionId = sub.id
+  return sub
 }
 
 export function AddSubdivision (newSubdivision) {
