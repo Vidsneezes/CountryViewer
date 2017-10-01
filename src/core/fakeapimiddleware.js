@@ -40,6 +40,11 @@ export function EditCountry (newCountryInfo, countryid) {
   data.countries[indexedCountry]['is_independent'] = newCountryInfo.isindependent
 }
 
+export function DeleteCountry (countryid) {
+  let indexedCountry = countryid - 1
+  data.countries.splice(indexedCountry, 1)
+}
+
 export function AddSubdivision (newSubdivision) {
   data.countries[state.countryId].subdivisions.push({
     id: data.countries[state.countryId].subdivisions.length + 1,

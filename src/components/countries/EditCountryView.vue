@@ -7,11 +7,12 @@
     Is Independent? <input v-model="isindependent" type="checkbox"/>
     <input v-model="iso31662" placeholder="Iso 3166 2" type="text"/>
     <button v-on:click='save'>Save</button>
+    <button v-on:click='deleteCountry'>Delete</button>
     <router-link :to="{name:'CountriesGrid'}">Back To Countries</router-link>
   </div>
 </template>
 <script>
-import {GetCountry, EditCountry} from '../../core/fakeapimiddleware'
+import {GetCountry, EditCountry, DeleteCountry} from '../../core/fakeapimiddleware'
 export default {
   name: 'country',
   props: ['countryid'],
@@ -30,6 +31,10 @@ export default {
     save: function () {
       EditCountry(this.$data, this.countryid)
       this.$router.push({name: 'CountryView', params: {countryid: this.countryid}})
+    },
+    deleteCountry: function () {
+      DeleteCountry(this.countryid)
+      this.$router.push({name: 'CountriesGrid'})
     }
   },
   computed: {
