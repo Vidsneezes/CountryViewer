@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     addCountry: function () {
-      let lastIndex = AddCountry()
+      let lastIndex = AddCountry(this.$data)
       this.$router.push({name: 'CountryView', params: {countryid: lastIndex}})
     }
   }

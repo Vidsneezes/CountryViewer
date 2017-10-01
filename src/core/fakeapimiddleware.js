@@ -14,28 +14,16 @@ export function GetCountry (id) {
   return data.countries[id]
 }
 
-export function AddCountry () {
+export function AddCountry (newCountry) {
   data.countries.push({
-    id: 3,
-    name: 'Mexico',
-    alpha2: 'MX',
-    alpha3: 'MXC',
+    id: data.countries.length + 1,
+    name: newCountry.name,
+    alpha2: newCountry.alpha2,
+    alpha3: newCountry.alpha3,
     code: null,
     'iso_3166_2': null,
     'is_independent': '1',
     subdivisions: [
-      {
-        id: 1,
-        name: 'Mexico City',
-        'country_id': 3,
-        code: 'silver'
-      },
-      {
-        id: 2,
-        name: 'Guadarajara',
-        'country_id': 3,
-        code: 'Blanen'
-      }
     ]
   })
   return data.countries.length
