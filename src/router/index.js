@@ -12,43 +12,52 @@ import PageNotFound from '@/components/PageNotFound'
 
 Vue.use(Router)
 
+const COUNTRIES = '/countries'
+const CID = '/:countryid'
+const ATC = COUNTRIES + CID
+const SUBS = '/subdivisions'
+const SIB = '/:subdivisionid'
+const ATS = SUBS + SIB
+const CISI = ATC + ATS
+
 export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/countries'
+      redirect: COUNTRIES
     },
     {
       path: '*',
       component: PageNotFound
     },
     {
-      path: '/countries',
+      path: COUNTRIES,
       name: 'CountriesGrid',
       component: CountriesGrid
     },
     {
-      path: '/countries/:countryid',
+      path: ATC,
       name: 'CountryView',
       component: CountryView,
       props: (route) => ({countryid: route.params.countryid})
     },
     {
-      path: '/countries/:countryid/Edit',
+      path: ATC + '/Edit',
       name: 'EditCountryView',
       component: EditCountryView,
       props: (route) => ({countryid: route.params.countryid})
     },
     {
-      path: '/subdivisions',
+      path: ATC + SUBS,
       name: 'SubdivisionsGrid',
-      component: SubdivisionsGrid
+      component: SubdivisionsGrid,
+      props: (route) => ({countryid: route.params.countryid})
     },
     {
-      path: '/subdivisions/:subdivisionid',
+      path: CISI,
       name: 'SubdivisionView',
       component: SubdivisionView,
-      props: (route) => ({subdivisionid: route.params.subdivisionid})
+      props: (route) => ({countryid: route.params.countryid, subdivisionid: route.params.subdivisionid})
     },
     {
       path: '/AddCountry',
@@ -56,15 +65,16 @@ export default new Router({
       component: AddCountryView
     },
     {
-      path: '/subdivisions/AddSubdivision',
+      path: ATC + SUBS + '/AddSubdivision',
       name: 'AddSubdivisionView',
-      component: AddSubdivisionView
+      component: AddSubdivisionView,
+      props: (route) => ({countryid: route.params.countryid})
     },
     {
-      path: '/subdivisions/:subdivisionid/Edit',
+      path: CISI + '/Edit',
       name: 'EditSubdivisionView',
       component: EditSubdivisionView,
-      props: (route) => ({subdivisionid: route.params.subdivisionid})
+      props: (route) => ({countryid: route.params.countryid, subdivisionid: route.params.subdivisionid})
     }
   ]
 })

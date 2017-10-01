@@ -2,18 +2,27 @@
   <div class="subdivision">
     <p>{{computedSubdivision.name}}</p>
     <p>{{computedSubdivision.code}}</p>
-    <router-link :to="{name:'EditSubdivisionView', params:{subdivisionid: computedSubdivision.id}}">Edit</router-link>
-    <router-link :to="{name:'SubdivisionsGrid'}">Back To Subdivisions</router-link>
+    <router-link :to="{name:'EditSubdivisionView', params:{countryid: country_id, subdivisionid: computedSubdivision.id}}">Edit</router-link>
+    <router-link :to="{name:'SubdivisionsGrid', params:{countryid: country_id}}">Back To Subdivisions</router-link>
   </div>
 </template>
 <script>
 import {GetSubdivision} from '../../core/fakeapimiddleware'
 export default {
   name: 'subdivision',
-  props: ['subdivisionid'],
+  props: ['countryid', 'subdivisionid'],
+  data () {
+    return {
+      country_id: this.countryid
+    }
+  },
   computed: {
     computedSubdivision: function () {
-      return GetSubdivision(this.subdivisionid)
+      let subdivision = GetSubdivision(this.countryid, this.subdivisionid)
+      if (subdivision === null) {
+        return {name: '', code: ''}
+      }
+      return GetSubdivision(this.countryid, this.subdivisionid)
     }
   }
 }

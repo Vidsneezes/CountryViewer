@@ -4,29 +4,30 @@
     <input v-model="code" placeholder="Code" type="text"/>
     <button v-on:click='save'>Save</button>
     <button v-on:click='deleteSubdivision'>Delete</button>
-    <router-link :to="{name:'SubdivisionsGrid'}">Back To Subdivisions</router-link>
+    <router-link :to="{name:'SubdivisionsGrid', params:{countryid: country_id}}">Back To Subdivisions</router-link>
   </div>
 </template>
 <script>
 import {EditSubdivision, GetSubdivision, DeleteSubdivision} from '../../core/fakeapimiddleware'
 export default {
   name: 'country',
-  props: ['subdivisionid'],
+  props: ['countryid', 'subdivisionid'],
   data () {
-    let subdivision = GetSubdivision(this.subdivisionid)
+    let subdivision = GetSubdivision(this.countryid, this.subdivisionid)
     return {
       name: subdivision.name,
-      code: subdivision.code
+      code: subdivision.code,
+      country_id: this.countryid
     }
   },
   methods: {
     save: function () {
-      EditSubdivision(this.$data, this.subdivisionid)
-      this.$router.push({name: 'SubdivisionView', params: {subdivisionid: this.subdivisionid}})
+      EditSubdivision(this.countryid, this.$data, this.subdivisionid)
+      this.$router.push({name: 'SubdivisionView', params: {countryid: this.countryid, subdivisionid: this.subdivisionid}})
     },
     deleteSubdivision: function () {
-      DeleteSubdivision(this.subdivisionid)
-      this.$router.push({name: 'SubdivisionsGrid'})
+      DeleteSubdivision(this.countryid, this.subdivisionid)
+      this.$router.push({name: 'SubdivisionsGrid', params: {countryid: this.countryid}})
     }
   },
   computed: {
