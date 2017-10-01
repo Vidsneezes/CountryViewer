@@ -75,15 +75,27 @@ export function GetSubdivisionIndex (countryIndex, subdivisionid) {
   return realIndex
 }
 
+export function GetNextSubdivisionCount (countryid) {
+  let country = GetCountry(countryid)
+  let max = 0
+  country.subdivisions.forEach((element) => {
+    if (element.id > max) {
+      max = element
+    }
+  })
+  return max
+}
+
 export function AddSubdivision (countryid, newSubdivision) {
   let indexedCountry = GetCountryIndex(countryid)
+  let nextCount = GetNextSubdivisionCount(countryid) + 1
   data.countries[indexedCountry].subdivisions.push({
-    id: data.countries[indexedCountry].subdivisions.length + 1,
+    id: nextCount,
     name: newSubdivision.name,
     code: newSubdivision.code,
     'country_id': countryid
   })
-  return data.countries[indexedCountry].subdivisions.length + 1
+  return nextCount
 }
 
 export function EditSubdivision (countryid, newSubInfo, subdivisionid) {
