@@ -1,9 +1,16 @@
 <template>
   <div class="subdivision">
-    <p>{{subdivision.name}}</p>
-    <p>{{subdivision.code}}</p>
-    <router-link :to="{name:'EditSubdivisionView', params:{countryid: country_id, subdivisionid: subdivision_id}}">Edit</router-link>
-    <router-link :to="{name:'SubdivisionsGrid', params:{countryid: country_id}}">Back To Subdivisions</router-link>
+    <b-nav fill class="nav-bar">
+      <b-nav-item :to="{name:'EditSubdivisionView', params:{countryid: country_id, subdivisionid: subdivision_id}}">Edit</b-nav-item>
+      <b-nav-item :to="{name:'SubdivisionsGrid', params:{countryid: country_id}}">Back To Subdivisions</b-nav-item>
+    </b-nav> 
+    <div class="mx-auto" style="width: 400px;">
+      <b-container class="country-view">
+        <p>Name: {{subdivision.name}}</p>
+        <p>Code: {{subdivision.code}}</p>
+      </b-container>
+    </div>
+    
   </div>
 </template>
 <script>
@@ -34,8 +41,9 @@ export default {
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
+p {
+  font-weight: bold;
+  font-size: x-large;
 }
 ul {
   list-style-type: none;
@@ -45,7 +53,16 @@ li {
   display: inline-block;
   margin: 0 10px;
 }
-a {
-  color: green;
+.nav-bar{
+  background: lightseagreen;
+  padding-bottom: 15px;
+  padding-top: 10px;
+  
+}
+.nav-bar a {
+  color: white;
+}
+.country-view {
+  margin-top: 50px;
 }
 </style>

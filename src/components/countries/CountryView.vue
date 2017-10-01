@@ -1,14 +1,21 @@
 <template>
   <div class="country">
-    <p>Name: {{country.name}}</p>
-    <p>Alpha2: {{country.alpha2}}</p>
-    <p>Alpha3: {{country.alpha3}}</p>
-    <p>Code: {{country.code}}</p>
-    <p>Is independent? {{country.is_independent}}</p>
-    <p>Iso: {{country.iso_3166_2}}</p>
-    <router-link :to="{name:'EditCountryView', params:{countryid: country_id}}">Edit</router-link>
-    <router-link :to="{name:'SubdivisionsGrid', params:{countryid: country_id}}">View Subdivisions</router-link>
-    <router-link :to="{name:'CountriesGrid'}">Back To Countries</router-link>
+    <b-nav fill class="nav-bar">
+      <b-nav-item :to="{name:'CountriesGrid'}">Countries</b-nav-item>
+      <b-nav-item :to="{name:'SubdivisionsGrid', params:{countryid: country_id}}">View Subdivisions</b-nav-item>
+      <b-nav-item :to="{name:'EditCountryView', params:{countryid: country_id}}">Edit</b-nav-item>
+    </b-nav> 
+    <div class="mx-auto" style="width: 400px;">
+      <b-container class="country-view">
+        <p>Name: {{country.name}}</p>
+        <p>Alpha2: {{country.alpha2}}</p>
+        <p>Alpha3: {{country.alpha3}}</p>
+        <p>Code: {{country.code}}</p>
+        <p>Is independent? {{country.is_independent}}</p>
+        <p>Iso: {{country.iso_3166_2}}</p>
+      </b-container>
+    </div>
+    
   </div>
 </template>
 <script>
@@ -31,8 +38,9 @@ export default {
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
+p {
+  font-weight: bold;
+  font-size: x-large;
 }
 ul {
   list-style-type: none;
@@ -42,7 +50,16 @@ li {
   display: inline-block;
   margin: 0 10px;
 }
-a {
-  color: green;
+.nav-bar{
+  background: lightseagreen;
+  padding-bottom: 15px;
+  padding-top: 10px;
+  
+}
+.nav-bar a {
+  color: white;
+}
+.country-view {
+  margin-top: 50px;
 }
 </style>

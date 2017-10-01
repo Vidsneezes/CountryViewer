@@ -1,11 +1,16 @@
 <template>
   <div class="countries">
-    <ul id="countries-list" >
-        <li v-for="country in countries" :key="country.id">
-            <router-link :to="{name:'CountryView' , params:{countryid: country.id}}">{{country.name}}</router-link>
-        </li>
-    </ul>
-        <router-link :to="{name:'AddCountryView'}">Add New Country</router-link>
+    <b-nav fill class="nav-bar">
+      <b-nav-item :to="{name:'AddCountryView'}">Add New Country</b-nav-item>
+    </b-nav> 
+    <b-row  v-for="country in countries" :key="country.id" class="b-row">
+      <b-col>
+        <b-card :title='country.name' class="country-card">
+          <b-button size='lg' variant='primary' :to="{name:'CountryView' , params:{countryid: country.id}}">Visit
+          </b-button>
+        </b-card>
+      </b-col>
+    </b-row>
   </div>
 </template>
 <script>
@@ -25,15 +30,21 @@ export default {
 h1, h2 {
   font-weight: normal;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+a{
+  color:white
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+
+.country-card {
+  margin-bottom: 10px;
 }
-a {
-  color: #42b983;
+
+.nav-bar{
+  background: lightseagreen;
+  padding-bottom: 15px;
+  padding-top: 10px;
+  
+}
+.nav-bar a {
+  color: white;
 }
 </style>
