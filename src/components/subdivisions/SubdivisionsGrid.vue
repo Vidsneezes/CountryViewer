@@ -1,13 +1,23 @@
 <template>
   <div class="subdivisions">
+     <b-nav fill class="nav-bar">
+      <b-nav-item><b-link :to="{name:'CountriesGrid'}">Back To Countries</b-link></b-nav-item>
+      <b-nav-item><b-link :to="{name:'CountryView', params:{countryid: country_id}}">Back To Country</b-link></b-nav-item>
+      <b-nav-item><b-link :to="{name:'AddSubdivisionView'}">Add New Subdivision</b-link></b-nav-item>
+    </b-nav> 
+    <b-row  v-for="subdivision in subdivisions" :key="subdivision.id" class="b-row">
+      <b-col>
+        <b-card :title='subdivision.name' class="country-card">
+          <b-button size='lg' variant='primary'>
+            <b-link :to="{name:'SubdivisionView', params:{countryid:country_id, subdivisionid: subdivision.id}}">Visit</b-link>
+          </b-button>
+        </b-card>
+      </b-col>
+    </b-row>
     <ul id="subdivisions-list" >
-        <li v-for="subdivision in subdivisions" :key="subdivision.id">
-            <router-link :to="{name:'SubdivisionView', params:{countryid:country_id, subdivisionid: subdivision.id}}">{{subdivision.name}}</router-link>
+        <li >
         </li>
     </ul>
-    <router-link :to="{name:'AddSubdivisionView'}">Add New Subdivision</router-link>
-    <router-link :to="{name:'CountryView', params:{countryid: country_id}}">Back To Country</router-link>
-    <router-link :to="{name:'CountriesGrid'}">Back To Countries</router-link>
   </div>
 </template>
 <script>
@@ -45,6 +55,22 @@ li {
   margin: 0 10px;
 }
 a {
-  color: #42b983;
+  color: white;
+}
+.nav-bar{
+  background: lightseagreen;
+  padding-bottom: 15px;
+  padding-top: 10px;
+  
+}
+.nav-bar a {
+  color: white;
+}
+.country-entry{
+  margin-bottom: 20px;
+  
+}
+.country-entry-form {
+  margin-top: 30px;
 }
 </style>
