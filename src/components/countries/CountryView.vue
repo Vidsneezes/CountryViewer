@@ -19,7 +19,9 @@ export default {
   computed: {
     computedCountry: function () {
       let country = GetCountry(this.countryid)
-      if (country === null) {
+      console.log(country)
+      if (country === undefined) {
+        this.$router.push({name: 'PageNotFound404'})
         return {name: '', alpha2: '', alpha3: '', code: '', is_independent: 'false', iso_3166_2: ''}
       }
       return country
