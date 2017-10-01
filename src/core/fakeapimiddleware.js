@@ -21,7 +21,7 @@ export function GetNextCountryCount () {
   if (data.countries.length > 0) {
     data.countries.forEach((element) => {
       if (element.id > max) {
-        max = element
+        max = element.id
       }
     })
   }
@@ -86,7 +86,7 @@ export function GetNextSubdivisionCount (countryid) {
   let max = 0
   country.subdivisions.forEach((element) => {
     if (element.id > max) {
-      max = element
+      max = element.id
     }
   })
   return max

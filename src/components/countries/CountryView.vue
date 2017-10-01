@@ -1,13 +1,13 @@
 <template>
   <div class="country">
-    <p>Name: {{computedCountry.name}}</p>
-    <p>Alpha2: {{computedCountry.alpha2}}</p>
-    <p>Alpha3: {{computedCountry.alpha3}}</p>
-    <p>Code: {{computedCountry.code}}</p>
-    <p>Is independent? {{computedCountry['is_independent']}}</p>
-    <p>Iso: {{computedCountry['iso_3166_2']}}</p>
-    <router-link :to="{name:'EditCountryView', params:{countryid: computedCountry.id}}">Edit</router-link>
-    <router-link :to="{name:'SubdivisionsGrid', params:{countryid: computedCountry.id}}">View Subdivisions</router-link>
+    <p>Name: {{country.name}}</p>
+    <p>Alpha2: {{country.alpha2}}</p>
+    <p>Alpha3: {{country.alpha3}}</p>
+    <p>Code: {{country.code}}</p>
+    <p>Is independent? {{country.is_independent}}</p>
+    <p>Iso: {{country.iso_3166_2}}</p>
+    <router-link :to="{name:'EditCountryView', params:{countryid: country_id}}">Edit</router-link>
+    <router-link :to="{name:'SubdivisionsGrid', params:{countryid: country_id}}">View Subdivisions</router-link>
     <router-link :to="{name:'CountriesGrid'}">Back To Countries</router-link>
   </div>
 </template>
@@ -16,13 +16,15 @@ import {GetCountry} from '../../core/fakeapimiddleware'
 export default {
   name: 'country',
   props: ['countryid'],
-  computed: {
-    computedCountry: function () {
-      let country = GetCountry(this.countryid)
-      if (country === null) {
-        return {name: '', alpha2: '', alpha3: '', code: '', is_independent: 'false', iso_3166_2: ''}
-      }
-      return country
+  data () {
+    let gcountry = GetCountry(this.countryid)
+    if (gcountry === undefined) {
+      this.$router.push({name: 'PageNotFound404'})
+      gcountry = {name: '', alpha2: '', alpha3: '', code: '', is_independent: '', iso_3166_2: ''}
+    }
+    return {
+      country_id: this.countryid,
+      country: gcountry
     }
   }
 }

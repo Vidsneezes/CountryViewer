@@ -28,6 +28,12 @@ export default new Router({
     },
     {
       path: '*',
+      name: 'PageNotFound',
+      component: PageNotFound
+    },
+    {
+      path: '/NotFound',
+      name: 'PageNotFound404',
       component: PageNotFound
     },
     {
