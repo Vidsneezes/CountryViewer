@@ -26,8 +26,17 @@ export function AddCountry (newCountry) {
     subdivisions: [
     ]
   })
-  console.log(data.countries[data.countries.length - 1])
   return data.countries.length
+}
+
+export function AddSubdivision (newSubdivision) {
+  data.countries[state.countryId].subdivisions.push({
+    id: data.countries[state.countryId].subdivisions.length + 1,
+    name: newSubdivision.name,
+    code: newSubdivision.code,
+    'country_id': state.countryId + 1
+  })
+  return data.countries[state.countryId].subdivisions.length
 }
 
 export function GetLastCountry () {
