@@ -4,7 +4,6 @@
     <p>{{computedSubdivision.code}}</p>
     <router-link :to="{name:'EditSubdivisionView', params:{subdivisionid: computedSubdivision.id}}">Edit</router-link>
     <router-link :to="{name:'SubdivisionsGrid'}">Back To Subdivisions</router-link>
-    <button v-on:click='addSubdivision'>Add Subdivision</button>
   </div>
 </template>
 <script>

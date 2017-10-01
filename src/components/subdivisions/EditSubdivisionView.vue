@@ -3,11 +3,12 @@
     <input v-model="name" :placeholder='computedSubdivision.name' type="text"/>
     <input v-model="code" :placeholder='computedSubdivision.code' type="text"/>
     <button v-on:click='save'>Save</button>
+    <button v-on:click='deleteSubdivision'>Delete</button>
     <router-link :to="{name:'SubdivisionsGrid'}">Back To Subdivisions</router-link>
   </div>
 </template>
 <script>
-import {EditSubdivision, GetSubdivision} from '../../core/fakeapimiddleware'
+import {EditSubdivision, GetSubdivision, DeleteSubdivision} from '../../core/fakeapimiddleware'
 export default {
   name: 'country',
   props: ['subdivisionid'],
@@ -21,6 +22,10 @@ export default {
     save: function () {
       EditSubdivision(this.$data, this.subdivisionid)
       this.$router.push({name: 'SubdivisionView', params: {subdivisionid: this.subdivisionid}})
+    },
+    deleteSubdivision: function () {
+      DeleteSubdivision(this.subdivisionid)
+      this.$router.push({name: 'SubdivisionsGrid'})
     }
   },
   computed: {
