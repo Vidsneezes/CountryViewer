@@ -46,7 +46,13 @@ export function EditCountry (newCountryInfo, countryid) {
 }
 
 export function DeleteCountry (countryid) {
-  let indexedCountry = countryid - 1
+  let indexedCountry = 0
+  data.countries.find((element, index) => {
+    if (element.id === countryid) {
+      indexedCountry = index
+      return
+    }
+  })
   data.countries.splice(indexedCountry, 1)
 }
 
