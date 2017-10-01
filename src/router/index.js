@@ -8,6 +8,7 @@ import SubdivisionsGrid from '@/components/subdivisions/SubdivisionsGrid'
 import SubdivisionView from '@/components/subdivisions/SubdivisionView'
 import AddSubdivisionView from '@/components/subdivisions/AddSubdivisionView'
 import EditSubdivisionView from '@/components/subdivisions/EditSubdivisionView'
+import PageNotFound from '@/components/PageNotFound'
 
 Vue.use(Router)
 
@@ -16,6 +17,10 @@ export default new Router({
     {
       path: '/',
       redirect: '/countries'
+    },
+    {
+      path: '*',
+      component: PageNotFound
     },
     {
       path: '/countries',
