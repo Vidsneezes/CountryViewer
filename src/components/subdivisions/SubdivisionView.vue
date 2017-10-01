@@ -1,6 +1,8 @@
 <template>
   <div class="subdivision">
     <p>{{computedSubdivision.name}}</p>
+    <p>{{computedSubdivision.code}}</p>
+    <router-link :to="{name:'EditSubdivisionView', params:{subdivisionid: computedSubdivision.id}}">Edit</router-link>
     <router-link :to="{name:'SubdivisionsGrid'}">Back To Subdivisions</router-link>
   </div>
 </template>
@@ -11,7 +13,7 @@ export default {
   props: ['subdivisionid'],
   computed: {
     computedSubdivision: function () {
-      return GetSubdivision(this.subdivisionid - 1)
+      return GetSubdivision(this.subdivisionid)
     }
   }
 }

@@ -39,6 +39,17 @@ export function AddSubdivision (newSubdivision) {
   return data.countries[state.countryId].subdivisions.length
 }
 
+export function EditSubdivision (newSubInfo, subdivisionid) {
+  let indexedSub = subdivisionid - 1
+  data.countries[state.countryId].subdivisions[indexedSub].name = newSubInfo.name
+  data.countries[state.countryId].subdivisions[indexedSub].code = newSubInfo.code
+}
+
+export function DeleteSubdivision (subdivisionid) {
+  let indexedSub = subdivisionid - 1
+  data.countries[state.countryId].subdivisions.splice(indexedSub, 1)
+}
+
 export function GetLastCountry () {
   return data.countries[state.countryId]
 }
@@ -48,7 +59,8 @@ export function GetSubdivisions () {
 }
 
 export function GetSubdivision (id) {
+  let indexedSub = id - 1
   state.subdivisionId = id
-  return data.countries[state.countryId].subdivisions[id]
+  return data.countries[state.countryId].subdivisions[indexedSub]
 }
 
