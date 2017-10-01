@@ -2,8 +2,8 @@
   <div class="subdivision">
     <p>{{computedSubdivision.name}}</p>
     <p>{{computedSubdivision.code}}</p>
-    <router-link :to="{name:'EditSubdivisionView', params:{subdivisionid: computedSubdivision.id}}">Edit</router-link>
-    <router-link :to="{name:'SubdivisionsGrid'}">Back To Subdivisions</router-link>
+    <router-link :to="{name:'EditSubdivisionView', params:{countryid: country_id, subdivisionid: computedSubdivision.id}}">Edit</router-link>
+    <router-link :to="{name:'SubdivisionsGrid', params:{countryid: country_id}}">Back To Subdivisions</router-link>
   </div>
 </template>
 <script>
@@ -13,7 +13,7 @@ export default {
   props: ['countryid', 'subdivisionid'],
   data () {
     return {
-      countryID: this.countryid
+      country_id: this.countryid
     }
   },
   computed: {

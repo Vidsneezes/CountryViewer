@@ -3,7 +3,7 @@
     <input v-model="name" placeholder="Country Name" type="text"/>
     <input v-model="code" placeholder="Code" type="text"/>
     <button v-on:click='addSubdivision'>Add Subdivision</button>
-    <router-link :to="{name:'SubdivisionsGrid'}">Back To Subdivisions</router-link>
+    <router-link :to="{name:'SubdivisionsGrid', params:{countryid: country_id}}">Back To Subdivisions</router-link>
   </div>
 </template>
 <script>
@@ -14,7 +14,8 @@ export default {
   data () {
     return {
       name: '',
-      code: ''
+      code: '',
+      country_id: this.countryid
     }
   },
   methods: {

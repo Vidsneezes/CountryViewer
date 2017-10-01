@@ -4,7 +4,7 @@
     <input v-model="code" placeholder="Code" type="text"/>
     <button v-on:click='save'>Save</button>
     <button v-on:click='deleteSubdivision'>Delete</button>
-    <router-link :to="{name:'SubdivisionsGrid'}">Back To Subdivisions</router-link>
+    <router-link :to="{name:'SubdivisionsGrid', params:{countryid: country_id}}">Back To Subdivisions</router-link>
   </div>
 </template>
 <script>
@@ -13,10 +13,11 @@ export default {
   name: 'country',
   props: ['countryid', 'subdivisionid'],
   data () {
-    let subdivision = GetSubdivision(this.subdivisionid)
+    let subdivision = GetSubdivision(this.countryid, this.subdivisionid)
     return {
       name: subdivision.name,
-      code: subdivision.code
+      code: subdivision.code,
+      country_id: this.countryid
     }
   },
   methods: {
