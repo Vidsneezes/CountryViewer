@@ -5,6 +5,8 @@ import CountryView from '@/components/countries/CountryView'
 import AddCountryView from '@/components/countries/AddCountryView'
 import SubdivisionsGrid from '@/components/subdivisions/SubdivisionsGrid'
 import SubdivisionView from '@/components/subdivisions/SubdivisionView'
+import AddSubdivisionView from '@/components/subdivisions/AddSubdivisionView'
+
 
 Vue.use(Router)
 
@@ -40,6 +42,11 @@ export default new Router({
       path: '/AddCountry',
       name: 'AddCountryView',
       component: AddCountryView
+    },
+    {
+      path: '/subdivisions/AddSubdivision',
+      name: 'AddSubdivisionView',
+      component: AddSubdivisionView
     }
   ]
 })
