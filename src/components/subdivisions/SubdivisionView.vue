@@ -2,6 +2,7 @@
   <div class="subdivision">
     <p>{{computedSubdivision.name}}</p>
     <p>{{computedSubdivision.code}}</p>
+    <router-link :to="{name:'EditSubdivisionView', params:{subdivisionid: computedSubdivision.id}}">Edit</router-link>
     <router-link :to="{name:'SubdivisionsGrid'}">Back To Subdivisions</router-link>
   </div>
 </template>

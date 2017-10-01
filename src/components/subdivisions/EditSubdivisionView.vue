@@ -1,15 +1,16 @@
 <template>
   <div class="country">
-    <input v-model="name" placeholder="Country Name" type="text"/>
-    <input v-model="code" placeholder="Code" type="text"/>
-    <button v-on:click='addSubdivision'>Add Subdivision</button>
+    <input v-model="name" :placeholder='computedSubdivision.name' type="text"/>
+    <input v-model="code" :placeholder='computedSubdivision.code' type="text"/>
+    <button v-on:click='save'>Save</button>
     <router-link :to="{name:'SubdivisionsGrid'}">Back To Subdivisions</router-link>
   </div>
 </template>
 <script>
-import {AddSubdivision} from '../../core/fakeapimiddleware'
+import {EditSubdivision, GetSubdivision} from '../../core/fakeapimiddleware'
 export default {
   name: 'country',
+  props: ['subdivisionid'],
   data () {
     return {
       name: '',
@@ -17,9 +18,14 @@ export default {
     }
   },
   methods: {
-    addSubdivision: function () {
-      let lastIndex = AddSubdivision(this.$data)
-      this.$router.push({name: 'SubdivisionView', params: {subdivisionid: lastIndex}})
+    save: function () {
+      EditSubdivision(this.$data, this.subdivisionid - 1)
+      this.$router.push({name: 'SubdivisionView', params: {subdivisionid: this.subdivisionid}})
+    }
+  },
+  computed: {
+    computedSubdivision: function () {
+      return GetSubdivision(this.subdivisionid - 1)
     }
   }
 }

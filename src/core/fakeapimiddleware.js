@@ -39,6 +39,11 @@ export function AddSubdivision (newSubdivision) {
   return data.countries[state.countryId].subdivisions.length
 }
 
+export function EditSubdivision (newSubInfo, subdivisionid) {
+  data.countries[state.countryId].subdivisions[subdivisionid].name = newSubInfo.name
+  data.countries[state.countryId].subdivisions[subdivisionid].code = newSubInfo.code
+}
+
 export function GetLastCountry () {
   return data.countries[state.countryId]
 }
