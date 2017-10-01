@@ -29,6 +29,16 @@ export function AddCountry (newCountry) {
   return data.countries.length
 }
 
+export function EditCountry (newCountryInfo, countryid) {
+  let indexedCountry = countryid - 1
+  data.countries[indexedCountry].name = newCountryInfo.name
+  data.countries[indexedCountry].alpha2 = newCountryInfo.alpha2
+  data.countries[indexedCountry].alpha3 = newCountryInfo.alpha3
+  data.countries[indexedCountry].code = newCountryInfo.code
+  data.countries[indexedCountry]['iso_3166_2'] = newCountryInfo.iso31662
+  data.countries[indexedCountry]['is_independent'] = newCountryInfo.isindependent
+}
+
 export function AddSubdivision (newSubdivision) {
   data.countries[state.countryId].subdivisions.push({
     id: data.countries[state.countryId].subdivisions.length + 1,
