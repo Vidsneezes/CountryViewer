@@ -1,5 +1,8 @@
 <template>
   <div class="country">
+    <input v-model="name" placeholder="Country Name" type="text"/>
+    <input v-model="alpha2" placeholder="alpha2" type="text" maxlength="2"/>
+    <input v-model="alpha3" placeholder="alpha3" type="text" maxlength="3"/>
     <button v-on:click='addCountry'>Add Country</button>
     <router-link :to="{name:'CountriesGrid'}">Back To Countries</router-link>
   </div>
@@ -11,13 +14,15 @@ export default {
   props: ['countryid'],
   data () {
     return {
-      name: 'yo'
+      name: '',
+      alpha2: '',
+      alpha3: ''
     }
   },
   methods: {
     addCountry: function () {
-      AddCountry()
-      this.$router.push({name: 'CountryView', params: {countryid: 3}})
+      let lastIndex = AddCountry()
+      this.$router.push({name: 'CountryView', params: {countryid: lastIndex}})
     }
   }
 }

@@ -38,8 +38,7 @@ export function AddCountry () {
       }
     ]
   })
-  console.log(data.countries)
-  return 0
+  return data.countries.length
 }
 
 export function GetLastCountry () {
