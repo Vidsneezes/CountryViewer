@@ -19,13 +19,13 @@ export default {
   },
   methods: {
     save: function () {
-      EditSubdivision(this.$data, this.subdivisionid - 1)
+      EditSubdivision(this.$data, this.subdivisionid)
       this.$router.push({name: 'SubdivisionView', params: {subdivisionid: this.subdivisionid}})
     }
   },
   computed: {
     computedSubdivision: function () {
-      return GetSubdivision(this.subdivisionid - 1)
+      return GetSubdivision(this.subdivisionid)
     }
   }
 }
