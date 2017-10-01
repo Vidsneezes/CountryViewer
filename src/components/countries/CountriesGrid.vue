@@ -1,7 +1,6 @@
 <template>
   <div class="countries">
     <b-nav fill class="nav-bar">
-      <b-nav-item Active><b-link :to="{name:'CountriesGrid'}">Countries</b-link></b-nav-item>
       <b-nav-item><b-link :to="{name:'AddCountryView'}">Add New Country</b-link></b-nav-item>
     </b-nav> 
     <b-row  v-for="country in countries" :key="country.id" class="b-row">

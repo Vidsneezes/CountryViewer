@@ -1,14 +1,64 @@
 <template>
   <div class="country">
-    <input v-model="name" placeholder="Country Name" type="text"/>
-    <input v-model="alpha2" placeholder="Alpha2" type="text" maxlength="2"/>
-    <input v-model="alpha3" placeholder="Alpha3" type="text" maxlength="3"/>
-    <input v-model="code" placeholder="Code" type="text"/>
-    Is Independent? <input v-model="isindependent" type="checkbox"/>
-    <input v-model="iso31662" placeholder="Iso 3166 2" type="text"/>
-    <button v-on:click='save'>Save</button>
-    <button v-on:click='deleteCountry'>Delete</button>
-    <router-link :to="{name:'CountriesGrid'}">Back To Countries</router-link>
+    <b-nav fill tabs class="nav-bar">
+      <b-nav-item Active><b-link :to="{name:'CountriesGrid'}">Back To Countries</b-link></b-nav-item>
+    </b-nav> 
+    <b-container class="country-entry-form" style="width: 280px;">
+    <b-row class="country-entry">
+      <b-col>
+        Country:
+      </b-col>
+      <b-col> 
+        <input v-model="name" placeholder="Country Name" type="text"/>
+      </b-col>
+    </b-row>
+    <b-row class="country-entry">
+      <b-col>
+        Alpha2:
+      </b-col>
+      <b-col>
+       <input v-model="alpha2" placeholder="alpha2" type="text" maxlength="2"/>
+      </b-col>
+    </b-row>
+    <b-row class="country-entry">
+      <b-col>
+        Alpha3:
+      </b-col>
+      <b-col>
+        <input v-model="alpha3" placeholder="alpha3" type="text" maxlength="3"/>
+      </b-col>
+    </b-row>
+    <b-row class="country-entry">
+      <b-col>
+        Code:
+      </b-col>
+      <b-col>
+        <input v-model="code" placeholder="code" type="text"/>
+      </b-col>
+    </b-row>
+    <b-row class="country-entry">
+      <b-col>
+      Is Independent?
+      </b-col>
+      <b-col>
+        <input v-model="isindependent" type="checkbox"/>
+      </b-col>
+    </b-row>
+    <b-row class="country-entry">
+      <b-col>
+      Iso 3166 2: 
+      </b-col>
+      <b-col>
+        <input v-model="iso31662" placeholder="Iso 3166 2" type="text"/>
+      </b-col>
+    </b-row>
+     <b-row>
+       <b-col>
+      <b-button variant="primary" v-on:click='save'>Save</b-button>
+       </b-col>
+     </b-row>
+     <b-button variant="danger" v-on:click='deleteCountry'>Delete</b-button>
+     </b-container>
   </div>
 </template>
 <script>
@@ -57,5 +107,22 @@ li {
 }
 a {
   color: green;
+}
+.nav-bar{
+  background: lightseagreen;
+  padding-bottom: 15px;
+  padding-top: 10px;
+  
+}
+.nav-bar a {
+  color: white;
+}
+.country-entry{
+  margin-bottom: 20px;
+  
+}
+
+.country-entry-form {
+  margin-top: 30px;
 }
 </style>
