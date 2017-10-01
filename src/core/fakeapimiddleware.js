@@ -18,11 +18,13 @@ export function GetCountry (id) {
 
 export function GetNextCountryCount () {
   let max = 0
-  data.countries.subdivisions.forEach((element) => {
-    if (element.id > max) {
-      max = element
-    }
-  })
+  if (data.countries.length > 0) {
+    data.countries.forEach((element) => {
+      if (element.id > max) {
+        max = element
+      }
+    })
+  }
   return max
 }
 
@@ -53,13 +55,7 @@ export function EditCountry (newCountryInfo, countryid) {
 }
 
 export function DeleteCountry (countryid) {
-  let indexedCountry = 0
-  data.countries.find((element, index) => {
-    if (element.id === countryid) {
-      indexedCountry = index
-      return
-    }
-  })
+  let indexedCountry = GetCountryIndex(countryid)
   data.countries.splice(indexedCountry, 1)
 }
 
