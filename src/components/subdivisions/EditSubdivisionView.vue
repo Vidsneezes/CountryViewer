@@ -1,7 +1,7 @@
 <template>
   <div class="country">
-    <input v-model="name" :placeholder='computedSubdivision.name' type="text"/>
-    <input v-model="code" :placeholder='computedSubdivision.code' type="text"/>
+    <input v-model="name" placeholder="Name" type="text"/>
+    <input v-model="code" placeholder="Code" type="text"/>
     <button v-on:click='save'>Save</button>
     <button v-on:click='deleteSubdivision'>Delete</button>
     <router-link :to="{name:'SubdivisionsGrid'}">Back To Subdivisions</router-link>
@@ -13,9 +13,10 @@ export default {
   name: 'country',
   props: ['subdivisionid'],
   data () {
+    let subdivision = GetSubdivision(this.subdivisionid)
     return {
-      name: '',
-      code: ''
+      name: subdivision.name,
+      code: subdivision.code
     }
   },
   methods: {
