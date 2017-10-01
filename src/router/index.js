@@ -20,7 +20,6 @@ const SIB = '/:subdivisionid'
 const ATS = SUBS + SIB
 const CISI = ATC + ATS
 
-
 export default new Router({
   routes: [
     {

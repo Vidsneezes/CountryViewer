@@ -79,7 +79,15 @@ export function GetSubdivisions (countryid) {
 }
 
 export function GetSubdivision (countryid, subdivisionid) {
-  let indexedSub = subdivisionid - 1
-  return data.countries[countryid].subdivisions[indexedSub]
+  let country = GetCountry(countryid)
+  let indexedSub = -1
+  country.subdivisions.find((element, index) => {
+    if (element.id === subdivisionid) {
+      indexedSub = index
+      return
+    }
+  })
+  let subdivision = country.subdivisions[indexedSub]
+  return subdivision
 }
 
