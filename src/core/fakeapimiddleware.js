@@ -10,13 +10,16 @@ export function GetCountries () {
 }
 
 export function GetCountry (id) {
-  let indexedCountry = data.countries.find((element) => {
+  let indexedCountry = -1
+  data.countries.find((element, index) => {
     if (element.id === id) {
-      return element
+      indexedCountry = index
+      return
     }
   })
-  state.countryId = indexedCountry.id
-  return indexedCountry
+  let country = data.countries[indexedCountry]
+  state.countryId = country.id
+  return country
 }
 
 export function AddCountry (newCountry) {

@@ -18,6 +18,9 @@ export default {
   props: ['countryid'],
   data () {
     let country = GetCountry(this.countryid)
+    if (country === null) {
+      country = {name: '', alpha2: '', alpha3: '', code: '', is_independent: 'false', iso_3166_2: ''}
+    }
     return {
       name: country.name,
       alpha2: country.alpha2,
@@ -35,11 +38,6 @@ export default {
     deleteCountry: function () {
       DeleteCountry(this.countryid)
       this.$router.push({name: 'CountriesGrid'})
-    }
-  },
-  computed: {
-    computeCountry: function () {
-      return GetCountry(this.countryid)
     }
   }
 }
