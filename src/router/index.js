@@ -7,7 +7,6 @@ import SubdivisionsGrid from '@/components/subdivisions/SubdivisionsGrid'
 import SubdivisionView from '@/components/subdivisions/SubdivisionView'
 import AddSubdivisionView from '@/components/subdivisions/AddSubdivisionView'
 
-
 Vue.use(Router)
 
 export default new Router({

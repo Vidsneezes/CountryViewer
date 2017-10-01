@@ -5,6 +5,7 @@
             <router-link :to="{name:'SubdivisionView', params:{subdivisionid: subdivision.id}}">{{subdivision.name}}</router-link>
         </li>
     </ul>
+    <router-link :to="{name:'AddSubdivisionView'}">Add New Subdivision</router-link>
     <router-link :to="{name:'CountryView', params:{countryid: country.id}}">Back To Country</router-link>
     <router-link :to="{name:'CountriesGrid'}">Back To Countries</router-link>
   </div>
