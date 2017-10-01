@@ -1,11 +1,11 @@
 <template>
   <div class="country">
-    <input v-model="name" :placeholder='computeCountry.name' type="text"/>
-    <input v-model="alpha2" :placeholder='computeCountry.alpha2' type="text" maxlength="2"/>
-    <input v-model="alpha3" :placeholder='computeCountry.alpha3' type="text" maxlength="3"/>
-    <input v-model="code" :placeholder='computeCountry.code' type="text"/>
-    Is Independent? <input v-model="is_independent" type="checkbox" :placeholder='computeCountry.isindependent'/>
-    <input v-model="iso_3166_2" :placeholder='computeCountry.iso31662' type="text"/>
+    <input v-model="name" placeholder="Country Name" type="text"/>
+    <input v-model="alpha2" placeholder="Alpha2" type="text" maxlength="2"/>
+    <input v-model="alpha3" placeholder="Alpha3" type="text" maxlength="3"/>
+    <input v-model="code" placeholder="Code" type="text"/>
+    Is Independent? <input v-model="isindependent" type="checkbox"/>
+    <input v-model="iso31662" placeholder="Iso 3166 2" type="text"/>
     <button v-on:click='save'>Save</button>
     <router-link :to="{name:'CountriesGrid'}">Back To Countries</router-link>
   </div>
@@ -16,19 +16,20 @@ export default {
   name: 'country',
   props: ['countryid'],
   data () {
+    let country = GetCountry(this.countryid)
     return {
-      name: '',
-      alpha2: '',
-      alpha3: '',
-      code: '',
-      isindependent: false,
-      iso31662: ''
+      name: country.name,
+      alpha2: country.alpha2,
+      alpha3: country.alpha3,
+      code: country.code,
+      isindependent: country.is_independent,
+      iso31662: country.iso_3166_2
     }
   },
   methods: {
     save: function () {
-      let lastIndex = EditCountry(this.$data, this.countryid)
-      this.$router.push({name: 'CountryView', params: {countryid: lastIndex}})
+      EditCountry(this.$data, this.countryid)
+      this.$router.push({name: 'CountryView', params: {countryid: this.countryid}})
     }
   },
   computed: {
