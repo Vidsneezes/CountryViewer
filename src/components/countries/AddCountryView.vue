@@ -3,13 +3,13 @@
     <b-nav fill tabs class="nav-bar">
       <b-nav-item  :to="{name:'CountriesGrid'}">Back To Countries</b-nav-item>
     </b-nav> 
-    <b-container class="country-entry-form" style="width: 280px;">
+    <b-container v-if='!saving' class="country-entry-form" style="width: 280px;">
     <b-row class="country-entry">
       <b-col>
         Country:
       </b-col>
       <b-col> 
-        <input v-model="name" placeholder="Country Name" type="text"/>
+        <input v-model="country.name" placeholder="Country Name" type="text"/>
       </b-col>
     </b-row>
     <b-row class="country-entry">
@@ -17,7 +17,7 @@
         Alpha2:
       </b-col>
       <b-col>
-       <input v-model="alpha2" placeholder="alpha2" type="text" maxlength="2"/>
+       <input v-model="country.alpha2" placeholder="alpha2" type="text" maxlength="2"/>
       </b-col>
     </b-row>
     <b-row class="country-entry">
@@ -25,7 +25,7 @@
         Alpha3:
       </b-col>
       <b-col>
-        <input v-model="alpha3" placeholder="alpha3" type="text" maxlength="3"/>
+        <input v-model="country.alpha3" placeholder="alpha3" type="text" maxlength="3"/>
       </b-col>
     </b-row>
     <b-row class="country-entry">
@@ -33,7 +33,7 @@
         Code:
       </b-col>
       <b-col>
-        <input v-model="code" placeholder="code" type="text"/>
+        <input v-model="country.code" placeholder="code" type="text"/>
       </b-col>
     </b-row>
     <b-row class="country-entry">
@@ -41,7 +41,7 @@
       Is Independent?
       </b-col>
       <b-col>
-        <input v-model="is_independent" type="checkbox"/>
+        <input v-model="country.is_independent" type="checkbox"/>
       </b-col>
     </b-row>
     <b-row class="country-entry">
@@ -49,7 +49,7 @@
       Iso 3166 2: 
       </b-col>
       <b-col>
-        <input v-model="iso_3166_2" placeholder="Iso 3166 2" type="text"/>
+        <input v-model="country.iso_3166_2" placeholder="Iso 3166 2" type="text"/>
       </b-col>
     </b-row>
     <b-row>
@@ -58,7 +58,15 @@
       </b-col>
     </b-row>
     </b-container>
-    
+    <div v-else>
+      <p>Saving..</p>
+    </div>
+   <b-modal v-model="modalError" id="Error"
+             ref="modal"
+             title="There was an error"
+             @ok="modalConfirm"
+     >Make sure to include a *Name and an *alpha2
+    </b-modal>
   </div>
 </template>
 <script>
@@ -68,18 +76,31 @@ export default {
   props: ['countryid'],
   data () {
     return {
-      name: '',
-      alpha2: '',
-      alpha3: '',
-      code: '',
-      'is_independent': false,
-      'iso_3166_2': ''
+      country: {name: '',
+        alpha2: '',
+        alpha3: '',
+        code: '',
+        'is_independent': false,
+        'iso_3166_2': ''
+      },
+      lastIndex: 0,
+      saving: false,
+      modalError: false
     }
   },
   methods: {
     addCountry: function () {
-      let lastIndex = AddCountry(this.$data)
-      this.$router.push({name: 'CountryView', params: {countryid: lastIndex}})
+      this.saving = true
+      AddCountry(this.$data.country, (response) => {
+        this.lastIndex = response.data.data.id
+        this.$router.push({name: 'CountryView', params: {countryid: this.lastIndex}})
+      }, (error) => {
+        this.modalError = true
+        console.log(error)
+      })
+    },
+    modalConfirm: function () {
+      this.saving = false
     }
   }
 }

@@ -3,13 +3,14 @@
     <b-nav fill class="nav-bar">
       <b-nav-item :to="{name:'SubdivisionsGrid', params:{countryid: country_id}}">Back To Subdivisions</b-nav-item>
     </b-nav> 
-     <b-container class="country-entry-form" style="width: 280px;">
+
+    <b-container v-if='loaded && !updating' class="country-entry-form" style="width: 280px;">
     <b-row class="country-entry">
       <b-col>
         Name: 
       </b-col>
       <b-col>
-        <input v-model="name" placeholder="Name" type="text"/>
+        <input v-model="subdivision.name" placeholder="Name" type="text"/>
       </b-col>
     </b-row>
     <b-row class="country-entry">
@@ -17,12 +18,15 @@
         Code:
       </b-col>
       <b-col>
-        <input v-model="code" placeholder="Code" type="text"/>
+        <input v-model="subdivision.code" placeholder="Code" type="text"/>
       </b-col>
     </b-row>
     <b-button variant="primary" v-on:click='save'>Save</b-button>
      <b-btn variant="danger" v-b-modal.modalDelete>Delete</b-btn>
      </b-container>
+     <div v-else>
+       <p>Modifying...</p>
+     </div>
      <b-modal id="modalDelete"
              ref="modal"
              title="Delete?"
@@ -37,27 +41,34 @@ export default {
   name: 'country',
   props: ['countryid', 'subdivisionid'],
   data () {
-    let subdivision = GetSubdivision(this.countryid, this.subdivisionid)
     return {
-      name: subdivision.name,
-      code: subdivision.code,
-      country_id: this.countryid
+      country_id: this.countryid,
+      subdivision: {},
+      updating: false,
+      loaded: false
     }
   },
   methods: {
     save: function () {
-      EditSubdivision(this.countryid, this.$data, this.subdivisionid)
-      this.$router.push({name: 'SubdivisionView', params: {countryid: this.countryid, subdivisionid: this.subdivisionid}})
+      this.updating = true
+      EditSubdivision(this.countryid, this.$data.subdivision, this.subdivisionid, (response) => {
+        this.$router.push({name: 'SubdivisionView', params: {countryid: this.countryid, subdivisionid: this.subdivisionid}})
+      }, (error) => {
+        console.log(error)
+      })
     },
     deleteSubdivision: function () {
-      DeleteSubdivision(this.countryid, this.subdivisionid)
-      this.$router.push({name: 'SubdivisionsGrid', params: {countryid: this.countryid}})
+      this.updating = true
+      DeleteSubdivision(this.countryid, this.subdivisionid, (response) => {
+        this.$router.push({name: 'SubdivisionsGrid', params: {countryid: this.countryid}})
+      })
     }
   },
-  computed: {
-    computedSubdivision: function () {
-      return GetSubdivision(this.subdivisionid)
-    }
+  mounted: function () {
+    GetSubdivision(this.countryid, this.subdivisionid, (response) => {
+      this.subdivision = response.data.data
+      this.loaded = true
+    })
   }
 }
 </script>

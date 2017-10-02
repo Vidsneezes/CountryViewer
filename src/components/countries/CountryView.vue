@@ -5,14 +5,14 @@
       <b-nav-item :to="{name:'SubdivisionsGrid', params:{countryid: country_id}}">View Subdivisions</b-nav-item>
       <b-nav-item :to="{name:'EditCountryView', params:{countryid: country_id}}">Edit</b-nav-item>
     </b-nav> 
-    <div class="mx-auto" style="width: 400px;">
+    <div v-if='loaded' class="mx-auto" style="width: 600px;">
       <b-container class="country-view">
         <p>Name: {{country.name}}</p>
         <p>Alpha2: {{country.alpha2}}</p>
         <p>Alpha3: {{country.alpha3}}</p>
         <p>Code: {{country.code}}</p>
         <p>Is independent? {{country.is_independent}}</p>
-        <p>Iso: {{country.iso_3166_2}}</p>
+        <p>Iso 3166 2: {{country.iso_3166_2}}</p>
       </b-container>
     </div>
     
@@ -24,15 +24,17 @@ export default {
   name: 'country',
   props: ['countryid'],
   data () {
-    let gcountry = GetCountry(this.countryid)
-    if (gcountry === undefined) {
-      this.$router.push({name: 'PageNotFound404'})
-      gcountry = {name: '', alpha2: '', alpha3: '', code: '', is_independent: '', iso_3166_2: ''}
-    }
     return {
       country_id: this.countryid,
-      country: gcountry
+      country: {},
+      loaded: false
     }
+  },
+  mounted: function () {
+    GetCountry(this.countryid, (response) => {
+      this.country = response.data.data
+      this.loaded = true
+    })
   }
 }
 </script>

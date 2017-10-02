@@ -1,19 +1,21 @@
 import {data} from './fakeapi'
+import {GetCountriesAPI,
+  GetCountryAPI,
+  GetSubdivisionsAPI,
+  GetSubdivisionAPI,
+  AddCountryAPI,
+  AddSubdivisionAPI,
+  UpdateCountryAPI,
+  DeleteCountryAPI,
+  UpdateSubdivisionAPI,
+  DeleteSubdivisionAPI} from './CountryApi'
 
-export function GetCountries () {
-  return data.countries
+export function GetCountries (callback) {
+  GetCountriesAPI(callback)
 }
 
-export function GetCountry (id) {
-  let indexedCountry = -1
-  data.countries.find((element, index) => {
-    if (element.id === id) {
-      indexedCountry = index
-      return
-    }
-  })
-  let country = data.countries[indexedCountry]
-  return country
+export function GetCountry (id, callback) {
+  GetCountryAPI(id, callback)
 }
 
 export function GetNextCountryCount () {
@@ -28,35 +30,16 @@ export function GetNextCountryCount () {
   return max
 }
 
-export function AddCountry (newCountry) {
-  let nextCount = GetNextCountryCount()
-  data.countries.push({
-    id: nextCount + 1,
-    name: newCountry.name,
-    alpha2: newCountry.alpha2,
-    alpha3: newCountry.alpha3,
-    code: newCountry.code,
-    'iso_3166_2': newCountry['iso_3166_2'],
-    'is_independent': newCountry['is_independent'],
-    subdivisions: [
-    ]
-  })
-  return nextCount + 1
+export function AddCountry (newCountry, callback, error) {
+  AddCountryAPI(newCountry, callback, error)
 }
 
-export function EditCountry (newCountryInfo, countryid) {
-  let countryIndex = GetCountryIndex(countryid)
-  data.countries[countryIndex].name = newCountryInfo.name
-  data.countries[countryIndex].alpha2 = newCountryInfo.alpha2
-  data.countries[countryIndex].alpha3 = newCountryInfo.alpha3
-  data.countries[countryIndex].code = newCountryInfo.code
-  data.countries[countryIndex]['iso_3166_2'] = newCountryInfo.iso31662
-  data.countries[countryIndex]['is_independent'] = newCountryInfo.isindependent
+export function EditCountry (newCountryInfo, countryid, callback, error) {
+  UpdateCountryAPI(countryid, newCountryInfo, callback, error)
 }
 
-export function DeleteCountry (countryid) {
-  let indexedCountry = GetCountryIndex(countryid)
-  data.countries.splice(indexedCountry, 1)
+export function DeleteCountry (countryid, callback) {
+  DeleteCountryAPI(countryid, callback)
 }
 
 export function GetCountryIndex (countryid) {
@@ -92,48 +75,22 @@ export function GetNextSubdivisionCount (countryid) {
   return max
 }
 
-export function AddSubdivision (countryid, newSubdivision) {
-  let indexedCountry = GetCountryIndex(countryid)
-  let nextCount = GetNextSubdivisionCount(countryid) + 1
-  data.countries[indexedCountry].subdivisions.push({
-    id: nextCount,
-    name: newSubdivision.name,
-    code: newSubdivision.code,
-    'country_id': countryid
-  })
-  return nextCount
+export function AddSubdivision (countryid, newSubdivision, callback, error) {
+  AddSubdivisionAPI(countryid, newSubdivision, callback, error)
 }
 
-export function EditSubdivision (countryid, newSubInfo, subdivisionid) {
-  let indexedCountry = GetCountryIndex(countryid)
-  let indexedSubdivision = GetSubdivisionIndex(indexedCountry, subdivisionid)
-  let subdivision = GetSubdivision(countryid, subdivisionid)
-  subdivision.name = newSubInfo.name
-  subdivision.code = newSubInfo.code
-  data.countries[indexedCountry].subdivisions[indexedSubdivision] = subdivision
+export function EditSubdivision (countryid, newSubInfo, subdivisionid, callback, error) {
+  UpdateSubdivisionAPI(countryid, subdivisionid, newSubInfo, callback, error)
 }
 
-export function DeleteSubdivision (countryid, subdivisionid) {
-  let indexedCountry = GetCountryIndex(countryid)
-  let indexedSubdivision = GetSubdivisionIndex(indexedCountry, subdivisionid)
-  data.countries[indexedCountry].subdivisions.splice(indexedSubdivision, 1)
+export function DeleteSubdivision (countryid, subdivisionid, callback) {
+  DeleteSubdivisionAPI(countryid, subdivisionid, callback)
 }
 
-export function GetSubdivisions (countryid) {
-  let country = GetCountry(countryid)
-  return country.subdivisions
+export function GetSubdivisions (countryid, callback) {
+  GetSubdivisionsAPI(countryid, callback)
 }
 
-export function GetSubdivision (countryid, subdivisionid) {
-  let country = GetCountry(countryid)
-  let indexedSub = -1
-  country.subdivisions.find((element, index) => {
-    if (element.id === subdivisionid) {
-      indexedSub = index
-      return
-    }
-  })
-  let subdivision = country.subdivisions[indexedSub]
-  return subdivision
+export function GetSubdivision (countryid, subdivisionid, callback) {
+  GetSubdivisionAPI(countryid, subdivisionid, callback)
 }
-

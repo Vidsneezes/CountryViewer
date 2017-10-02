@@ -4,7 +4,8 @@
       <b-nav-item :to="{name:'CountriesGrid'}">Back To Countries</b-nav-item>
       <b-nav-item :to="{name:'CountryView', params:{countryid: country_id}}">Back To Country</b-nav-item>
       <b-nav-item :to="{name:'AddSubdivisionView'}">Add New Subdivision</b-nav-item>
-    </b-nav> 
+    </b-nav>
+    <div v-if='loaded'> 
     <b-row  v-for="subdivision in subdivisions" :key="subdivision.id" class="b-row">
       <b-col>
         <b-card :title='subdivision.name' class="country-card">
@@ -13,10 +14,7 @@
         </b-card>
       </b-col>
     </b-row>
-    <ul id="subdivisions-list" >
-        <li >
-        </li>
-    </ul>
+    </div>
   </div>
 </template>
 <script>
@@ -26,17 +24,16 @@ export default {
   props: ['countryid'],
   data () {
     return {
-      country_id: this.countryid
+      country_id: this.countryid,
+      subdivisions: [],
+      loaded: false
     }
   },
-  computed: {
-    subdivisions: function () {
-      let subs = GetSubdivisions(this.countryid)
-      if (subs === null) {
-        subs = []
-      }
-      return subs
-    }
+  mounted: function () {
+    GetSubdivisions(this.countryid, (response) => {
+      this.subdivisions = response.data.data
+      this.loaded = true
+    })
   }
 }
 </script>

@@ -4,7 +4,7 @@
       <b-nav-item :to="{name:'EditSubdivisionView', params:{countryid: country_id, subdivisionid: subdivision_id}}">Edit</b-nav-item>
       <b-nav-item :to="{name:'SubdivisionsGrid', params:{countryid: country_id}}">Back To Subdivisions</b-nav-item>
     </b-nav> 
-    <div class="mx-auto" style="width: 400px;">
+    <div v-if='loaded' class="mx-auto" style="width: 400px;">
       <b-container class="country-view">
         <p>Name: {{subdivision.name}}</p>
         <p>Code: {{subdivision.code}}</p>
@@ -14,28 +14,23 @@
   </div>
 </template>
 <script>
-import {GetSubdivision, GetCountry} from '../../core/fakeapimiddleware'
+import {GetSubdivision} from '../../core/fakeapimiddleware'
 export default {
   name: 'subdivision',
   props: ['countryid', 'subdivisionid'],
   data () {
-    let country = GetCountry(this.countryid)
-    let subdivision
-    if (country !== undefined) {
-      subdivision = GetSubdivision(this.countryid, this.subdivisionid)
-      if (subdivision === undefined) {
-        this.$router.push({name: 'PageNotFound404'})
-        subdivision = {subdivision: {id: '', name: '', code: ''}}
-      }
-    } else {
-      this.$router.push({name: 'PageNotFound404'})
-      subdivision = {subdivision: {id: '', name: '', code: ''}}
-    }
     return {
       country_id: this.countryid,
       subdivision_id: this.subdivisionid,
-      subdivision: subdivision
+      subdivision: {},
+      loaded: false
     }
+  },
+  mounted: function () {
+    GetSubdivision(this.countryid, this.subdivisionid, (response) => {
+      this.subdivision = response.data.data
+      this.loaded = true
+    })
   }
 }
 </script>
