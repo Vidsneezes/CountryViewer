@@ -14,14 +14,14 @@ export function GetCountriesAPI (callback) {
   }).then(callback)
 }
 
-export function GetCountryAPI (countryId, callback) {
+export function GetCountryAPI (countryId, callback, error) {
   axios({
     method: 'get',
     url: path + '/' + countryId,
     headers: {
       'Content-Type': responseType
     }
-  }).then(callback)
+  }).then(callback).catch(error)
 }
 
 export function AddCountryAPI (data, callback, error) {
