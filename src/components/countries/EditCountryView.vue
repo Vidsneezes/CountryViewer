@@ -60,7 +60,7 @@
       <b-btn variant="danger" v-b-modal.modalDelete>Delete</b-btn>
      </b-container>
      <div v-else>
-       <p>Updating...</p>
+       <p>Modifying...</p>
      </div>
      <b-modal id="modalDelete"
              ref="modal"
@@ -92,8 +92,11 @@ export default {
       })
     },
     deleteCountry: function () {
-      DeleteCountry(this.countryid)
-      this.$router.push({name: 'CountriesGrid'})
+      this.updating = true
+      DeleteCountry(this.countryid, (response) => {
+        console.log('ok')
+        this.$router.push({name: 'CountriesGrid'})
+      })
     }
   },
   mounted: function () {

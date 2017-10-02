@@ -5,7 +5,8 @@ import {GetCountriesAPI,
   GetSubdivisionAPI,
   AddCountryAPI,
   AddSubdivisionAPI,
-  UpdateCountryAPI} from './CountryApi'
+  UpdateCountryAPI,
+  DeleteCountryAPI} from './CountryApi'
 
 export function GetCountries (callback) {
   GetCountriesAPI(callback)
@@ -35,9 +36,8 @@ export function EditCountry (newCountryInfo, countryid, callback, error) {
   UpdateCountryAPI(countryid, newCountryInfo, callback, error)
 }
 
-export function DeleteCountry (countryid) {
-  let indexedCountry = GetCountryIndex(countryid)
-  data.countries.splice(indexedCountry, 1)
+export function DeleteCountry (countryid, callback) {
+  DeleteCountryAPI(countryid, callback)
 }
 
 export function GetCountryIndex (countryid) {
