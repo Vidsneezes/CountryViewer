@@ -2,7 +2,8 @@ import {data} from './fakeapi'
 import {GetCountriesAPI,
   GetCountryAPI,
   GetSubdivisionsAPI,
-  GetSubdivisionAPI} from './CountryApi'
+  GetSubdivisionAPI,
+  AddCountryAPI} from './CountryApi'
 
 export function GetCountries (callback) {
   GetCountriesAPI(callback)
@@ -24,20 +25,8 @@ export function GetNextCountryCount () {
   return max
 }
 
-export function AddCountry (newCountry) {
-  let nextCount = GetNextCountryCount()
-  data.countries.push({
-    id: nextCount + 1,
-    name: newCountry.name,
-    alpha2: newCountry.alpha2,
-    alpha3: newCountry.alpha3,
-    code: newCountry.code,
-    'iso_3166_2': newCountry['iso_3166_2'],
-    'is_independent': newCountry['is_independent'],
-    subdivisions: [
-    ]
-  })
-  return nextCount + 1
+export function AddCountry (newCountry, callback, error) {
+  AddCountryAPI(newCountry, callback, error)
 }
 
 export function EditCountry (newCountryInfo, countryid) {

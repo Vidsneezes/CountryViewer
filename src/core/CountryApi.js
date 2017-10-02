@@ -24,15 +24,15 @@ export function GetCountryAPI (countryId, callback) {
   }).then(callback)
 }
 
-export function AddCountryAPI (countryId, data, callback) {
+export function AddCountryAPI (data, callback, error) {
   axios({
     method: 'post',
-    url: path + '/' + countryId,
+    url: path,
     data: data,
     headers: {
       'Content-Type': responseType
     }
-  }).then(callback)
+  }).then(callback).catch(error)
 }
 
 export function UpdateCountryAPI (countryId, data, callback) {

@@ -5,14 +5,14 @@
       <b-nav-item :to="{name:'SubdivisionsGrid', params:{countryid: country_id}}">View Subdivisions</b-nav-item>
       <b-nav-item :to="{name:'EditCountryView', params:{countryid: country_id}}">Edit</b-nav-item>
     </b-nav> 
-    <div v-if='loaded' class="mx-auto" style="width: 400px;">
+    <div v-if='loaded' class="mx-auto" style="width: 600px;">
       <b-container class="country-view">
         <p>Name: {{country.name}}</p>
         <p>Alpha2: {{country.alpha2}}</p>
         <p>Alpha3: {{country.alpha3}}</p>
         <p>Code: {{country.code}}</p>
         <p>Is independent? {{country.is_independent}}</p>
-        <p>Iso: {{country.iso_3166_2}}</p>
+        <p>Iso 3166 2: {{country.iso_3166_2}}</p>
       </b-container>
     </div>
     
