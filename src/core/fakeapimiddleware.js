@@ -1,6 +1,11 @@
 import {data} from './fakeapi'
+import {GetCountriesAPI} from './CountryApi'
+
+let dit
 
 export function GetCountries () {
+  dit = GetCountriesAPI()
+  console.log(dit)
   return data.countries
 }
 
