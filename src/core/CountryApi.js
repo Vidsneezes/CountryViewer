@@ -18,7 +18,9 @@ export function GetCountryAPI (countryId, callback) {
   axios({
     method: 'get',
     url: path + '/' + countryId,
-    responseType: responseType
+    headers: {
+      'Content-Type': responseType
+    }
   }).then(callback)
 }
 
@@ -29,8 +31,7 @@ export function AddCountryAPI (countryId, data, callback) {
     data: data,
     headers: {
       'Content-Type': responseType
-    },
-    responseType: responseType
+    }
   }).then(callback)
 }
 

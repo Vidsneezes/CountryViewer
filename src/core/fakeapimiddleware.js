@@ -1,20 +1,12 @@
 import {data} from './fakeapi'
-import {GetCountriesAPI} from './CountryApi'
+import {GetCountriesAPI, GetCountryAPI} from './CountryApi'
 
 export function GetCountries (callback) {
   GetCountriesAPI(callback)
 }
 
-export function GetCountry (id) {
-  let indexedCountry = -1
-  data.countries.find((element, index) => {
-    if (element.id === id) {
-      indexedCountry = index
-      return
-    }
-  })
-  let country = data.countries[indexedCountry]
-  return country
+export function GetCountry (id, callback) {
+  GetCountryAPI(id, callback)
 }
 
 export function GetNextCountryCount () {
