@@ -28,6 +28,7 @@
      <b-modal v-model="modalError" id="Error"
              ref="modal"
              title="There was an error"
+              @ok="modalConfirm"
      >Make sure to include a *Name and *Code
     </b-modal>
   </div>
@@ -59,6 +60,9 @@ export default {
         this.modalError = true
         console.log(error)
       })
+    },
+    modalConfirm: function () {
+      this.saving = false
     }
   }
 }

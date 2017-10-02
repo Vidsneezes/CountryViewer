@@ -50,12 +50,18 @@ export default {
   },
   methods: {
     save: function () {
-      EditSubdivision(this.countryid, this.$data, this.subdivisionid)
-      this.$router.push({name: 'SubdivisionView', params: {countryid: this.countryid, subdivisionid: this.subdivisionid}})
+      this.updating = true
+      EditSubdivision(this.countryid, this.$data.subdivision, this.subdivisionid, (response) => {
+        this.$router.push({name: 'SubdivisionView', params: {countryid: this.countryid, subdivisionid: this.subdivisionid}})
+      }, (error) => {
+        console.log(error)
+      })
     },
     deleteSubdivision: function () {
-      DeleteSubdivision(this.countryid, this.subdivisionid)
-      this.$router.push({name: 'SubdivisionsGrid', params: {countryid: this.countryid}})
+      this.updating = true
+      DeleteSubdivision(this.countryid, this.subdivisionid, (response) => {
+        this.$router.push({name: 'SubdivisionsGrid', params: {countryid: this.countryid}})
+      })
     }
   },
   mounted: function () {

@@ -64,6 +64,7 @@
    <b-modal v-model="modalError" id="Error"
              ref="modal"
              title="There was an error"
+             @ok="modalConfirm"
      >Make sure to include a *Name and an *alpha2
     </b-modal>
   </div>
@@ -98,7 +99,8 @@ export default {
         console.log(error)
       })
     },
-    FinishJob: function () {
+    modalConfirm: function () {
+      this.saving = false
     }
   }
 }
