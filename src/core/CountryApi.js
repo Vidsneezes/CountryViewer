@@ -8,7 +8,9 @@ export function GetCountriesAPI (callback) {
   axios({
     method: 'get',
     url: path,
-    responseType: responseType
+    headers: {
+      'Content-Type': responseType
+    }
   }).then(callback)
 }
 

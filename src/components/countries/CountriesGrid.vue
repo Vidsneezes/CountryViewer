@@ -1,9 +1,10 @@
 <template>
-  <div class="countries">
+  <div  class="countries">
     <b-nav fill class="nav-bar">
       <b-nav-item :to="{name:'AddCountryView'}">Add New Country</b-nav-item>
     </b-nav> 
-    <b-row  v-for="country in countries" :key="country.id" class="b-row">
+    <div v-if='loaded'>
+    <b-row   v-for="country in countries" :key="country.id" class="b-row">
       <b-col>
         <b-card :title='country.name' class="country-card">
           <b-button size='lg' variant='primary' :to="{name:'CountryView' , params:{countryid: country.id}}">Visit
@@ -11,17 +12,25 @@
         </b-card>
       </b-col>
     </b-row>
+    </div>
   </div>
 </template>
 <script>
 import {GetCountries} from '../../core/fakeapimiddleware'
-var countries = GetCountries()
 export default {
   name: 'countries',
   data () {
     return {
-      countries: countries
+      countries: [],
+      loaded: false
     }
+  },
+  mounted: function () {
+    GetCountries((response) => {
+      this.countries = response.data.data
+      this.loaded = true
+      console.log(this.countries)
+    })
   }
 }
 </script>
