@@ -3,13 +3,13 @@
     <b-nav fill class="nav-bar">
       <b-nav-item :to="{name:'CountriesGrid'}">Back To Countries</b-nav-item>
     </b-nav> 
-    <b-container class="country-entry-form" style="width: 280px;">
+    <b-container v-if='loaded && !updating' class="country-entry-form" style="width: 280px;">
     <b-row class="country-entry">
       <b-col>
         Country:
       </b-col>
       <b-col> 
-        <input v-model="name" placeholder="Country Name" type="text"/>
+        <input v-model="country.name" placeholder="Country Name" type="text"/>
       </b-col>
     </b-row>
     <b-row class="country-entry">
@@ -17,7 +17,7 @@
         Alpha2:
       </b-col>
       <b-col>
-       <input v-model="alpha2" placeholder="alpha2" type="text" maxlength="2"/>
+       <input v-model="country.alpha2" placeholder="alpha2" type="text" maxlength="2"/>
       </b-col>
     </b-row>
     <b-row class="country-entry">
@@ -25,7 +25,7 @@
         Alpha3:
       </b-col>
       <b-col>
-        <input v-model="alpha3" placeholder="alpha3" type="text" maxlength="3"/>
+        <input v-model="country.alpha3" placeholder="alpha3" type="text" maxlength="3"/>
       </b-col>
     </b-row>
     <b-row class="country-entry">
@@ -33,7 +33,7 @@
         Code:
       </b-col>
       <b-col>
-        <input v-model="code" placeholder="code" type="text"/>
+        <input v-model="country.code" placeholder="code" type="text"/>
       </b-col>
     </b-row>
     <b-row class="country-entry">
@@ -41,7 +41,7 @@
       Is Independent?
       </b-col>
       <b-col>
-        <input v-model="isindependent" type="checkbox"/>
+        <input v-model="country.is_independent" type="checkbox"/>
       </b-col>
     </b-row>
     <b-row class="country-entry">
@@ -49,7 +49,7 @@
       Iso 3166 2: 
       </b-col>
       <b-col>
-        <input v-model="iso31662" placeholder="Iso 3166 2" type="text"/>
+        <input v-model="country.iso_3166_2" placeholder="Iso 3166 2" type="text"/>
       </b-col>
     </b-row>
      <b-row>
@@ -59,6 +59,9 @@
      </b-row>
       <b-btn variant="danger" v-b-modal.modalDelete>Delete</b-btn>
      </b-container>
+     <div v-else>
+       <p>Updating...</p>
+     </div>
      <b-modal id="modalDelete"
              ref="modal"
              title="Delete?"
@@ -73,28 +76,31 @@ export default {
   name: 'country',
   props: ['countryid'],
   data () {
-    let country = GetCountry(this.countryid)
-    if (country === null) {
-      country = {name: '', alpha2: '', alpha3: '', code: '', is_independent: 'false', iso_3166_2: ''}
-    }
     return {
-      name: country.name,
-      alpha2: country.alpha2,
-      alpha3: country.alpha3,
-      code: country.code,
-      isindependent: country.is_independent,
-      iso31662: country.iso_3166_2
+      country: {},
+      loaded: false,
+      updating: false
     }
   },
   methods: {
     save: function () {
-      EditCountry(this.$data, this.countryid)
-      this.$router.push({name: 'CountryView', params: {countryid: this.countryid}})
+      this.updating = true
+      EditCountry(this.$data.country, this.countryid, (response) => {
+        this.$router.push({name: 'CountryView', params: {countryid: this.countryid}})
+      }, (error) => {
+        console.log(error)
+      })
     },
     deleteCountry: function () {
       DeleteCountry(this.countryid)
       this.$router.push({name: 'CountriesGrid'})
     }
+  },
+  mounted: function () {
+    GetCountry(this.countryid, (response) => {
+      this.country = response.data.data
+      this.loaded = true
+    })
   }
 }
 </script>

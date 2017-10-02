@@ -4,7 +4,8 @@ import {GetCountriesAPI,
   GetSubdivisionsAPI,
   GetSubdivisionAPI,
   AddCountryAPI,
-  AddSubdivisionAPI} from './CountryApi'
+  AddSubdivisionAPI,
+  UpdateCountryAPI} from './CountryApi'
 
 export function GetCountries (callback) {
   GetCountriesAPI(callback)
@@ -30,14 +31,8 @@ export function AddCountry (newCountry, callback, error) {
   AddCountryAPI(newCountry, callback, error)
 }
 
-export function EditCountry (newCountryInfo, countryid) {
-  let countryIndex = GetCountryIndex(countryid)
-  data.countries[countryIndex].name = newCountryInfo.name
-  data.countries[countryIndex].alpha2 = newCountryInfo.alpha2
-  data.countries[countryIndex].alpha3 = newCountryInfo.alpha3
-  data.countries[countryIndex].code = newCountryInfo.code
-  data.countries[countryIndex]['iso_3166_2'] = newCountryInfo.iso31662
-  data.countries[countryIndex]['is_independent'] = newCountryInfo.isindependent
+export function EditCountry (newCountryInfo, countryid, callback, error) {
+  UpdateCountryAPI(countryid, newCountryInfo, callback, error)
 }
 
 export function DeleteCountry (countryid) {

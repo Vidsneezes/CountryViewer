@@ -35,12 +35,12 @@ export function AddCountryAPI (data, callback, error) {
   }).then(callback).catch(error)
 }
 
-export function UpdateCountryAPI (countryId, data, callback) {
+export function UpdateCountryAPI (countryId, data, callback, error) {
   axios({
     method: 'put',
     url: path + '/' + countryId,
     data: data
-  }).then(callback)
+  }).then(callback).catch(error)
 }
 
 export function DeleteCountryAPI (countryId, callback) {
