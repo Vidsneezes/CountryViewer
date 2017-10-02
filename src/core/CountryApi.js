@@ -72,12 +72,12 @@ export function GetSubdivisionAPI (countryId, subdivisionId, callback) {
   }).then(callback)
 }
 
-export function UpdateSubdivisionAPI (countryId, subdivisionId, data, callback) {
+export function UpdateSubdivisionAPI (countryId, subdivisionId, data, callback, error) {
   axios({
     method: 'put',
     url: path + '/' + countryId + subdivisionPath + '/' + subdivisionId,
     data: data
-  }).then(callback)
+  }).then(callback).catch(error)
 }
 
 export function DeleteSubdivisionAPI (countryId, subdivisionId, callback) {

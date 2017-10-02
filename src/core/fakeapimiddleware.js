@@ -6,7 +6,9 @@ import {GetCountriesAPI,
   AddCountryAPI,
   AddSubdivisionAPI,
   UpdateCountryAPI,
-  DeleteCountryAPI} from './CountryApi'
+  DeleteCountryAPI,
+  UpdateSubdivisionAPI,
+  DeleteSubdivisionAPI} from './CountryApi'
 
 export function GetCountries (callback) {
   GetCountriesAPI(callback)
@@ -77,19 +79,12 @@ export function AddSubdivision (countryid, newSubdivision, callback, error) {
   AddSubdivisionAPI(countryid, newSubdivision, callback, error)
 }
 
-export function EditSubdivision (countryid, newSubInfo, subdivisionid) {
-  let indexedCountry = GetCountryIndex(countryid)
-  let indexedSubdivision = GetSubdivisionIndex(indexedCountry, subdivisionid)
-  let subdivision = GetSubdivision(countryid, subdivisionid)
-  subdivision.name = newSubInfo.name
-  subdivision.code = newSubInfo.code
-  data.countries[indexedCountry].subdivisions[indexedSubdivision] = subdivision
+export function EditSubdivision (countryid, newSubInfo, subdivisionid, callback, error) {
+  UpdateSubdivisionAPI(countryid, subdivisionid, newSubInfo, callback, error)
 }
 
-export function DeleteSubdivision (countryid, subdivisionid) {
-  let indexedCountry = GetCountryIndex(countryid)
-  let indexedSubdivision = GetSubdivisionIndex(indexedCountry, subdivisionid)
-  data.countries[indexedCountry].subdivisions.splice(indexedSubdivision, 1)
+export function DeleteSubdivision (countryid, subdivisionid, callback) {
+  DeleteSubdivisionAPI(countryid, subdivisionid, callback)
 }
 
 export function GetSubdivisions (countryid, callback) {
