@@ -13,12 +13,12 @@ import PageNotFound from '@/components/PageNotFound'
 Vue.use(Router)
 
 const COUNTRIES = '/countries'
-const CID = '/:countryid'
-const ATC = COUNTRIES + CID
-const SUBS = '/subdivisions'
-const SIB = '/:subdivisionid'
-const ATS = SUBS + SIB
-const CISI = ATC + ATS
+const COUNTRYID = '/:countryid'
+const COUNTRYPATH = COUNTRIES + COUNTRYID
+const SUBDIVISIONS = '/subdivisions'
+const SUBDIVISIONID = '/:subdivisionid'
+const SUBDIVISIONPATH = SUBDIVISIONS + SUBDIVISIONID
+const FULLPATH = COUNTRYPATH + SUBDIVISIONPATH
 
 export default new Router({
   routes: [
@@ -42,25 +42,25 @@ export default new Router({
       component: CountriesGrid
     },
     {
-      path: ATC,
+      path: COUNTRYPATH,
       name: 'CountryView',
       component: CountryView,
       props: (route) => ({countryid: route.params.countryid})
     },
     {
-      path: ATC + '/Edit',
+      path: COUNTRYPATH + '/Edit',
       name: 'EditCountryView',
       component: EditCountryView,
       props: (route) => ({countryid: route.params.countryid})
     },
     {
-      path: ATC + SUBS,
+      path: COUNTRYPATH + SUBDIVISIONS,
       name: 'SubdivisionsGrid',
       component: SubdivisionsGrid,
       props: (route) => ({countryid: route.params.countryid})
     },
     {
-      path: CISI,
+      path: FULLPATH,
       name: 'SubdivisionView',
       component: SubdivisionView,
       props: (route) => ({countryid: route.params.countryid, subdivisionid: route.params.subdivisionid})
@@ -71,13 +71,13 @@ export default new Router({
       component: AddCountryView
     },
     {
-      path: ATC + SUBS + '/AddSubdivision',
+      path: COUNTRYPATH + SUBDIVISIONS + '/AddSubdivision',
       name: 'AddSubdivisionView',
       component: AddSubdivisionView,
       props: (route) => ({countryid: route.params.countryid})
     },
     {
-      path: CISI + '/Edit',
+      path: FULLPATH + '/Edit',
       name: 'EditSubdivisionView',
       component: EditSubdivisionView,
       props: (route) => ({countryid: route.params.countryid, subdivisionid: route.params.subdivisionid})

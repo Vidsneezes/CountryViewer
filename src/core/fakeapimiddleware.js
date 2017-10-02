@@ -14,8 +14,8 @@ export function GetCountries (callback) {
   GetCountriesAPI(callback)
 }
 
-export function GetCountry (id, callback) {
-  GetCountryAPI(id, callback)
+export function GetCountry (id, callback, error) {
+  GetCountryAPI(id, callback, error)
 }
 
 export function GetNextCountryCount () {
@@ -91,6 +91,6 @@ export function GetSubdivisions (countryid, callback) {
   GetSubdivisionsAPI(countryid, callback)
 }
 
-export function GetSubdivision (countryid, subdivisionid, callback) {
-  GetSubdivisionAPI(countryid, subdivisionid, callback)
+export function GetSubdivision (countryid, subdivisionid, callback, error) {
+  GetSubdivisionAPI(countryid, subdivisionid, callback, error)
 }

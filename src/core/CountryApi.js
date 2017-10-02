@@ -14,14 +14,14 @@ export function GetCountriesAPI (callback) {
   }).then(callback)
 }
 
-export function GetCountryAPI (countryId, callback) {
+export function GetCountryAPI (countryId, callback, error) {
   axios({
     method: 'get',
     url: path + '/' + countryId,
     headers: {
       'Content-Type': responseType
     }
-  }).then(callback)
+  }).then(callback).catch(error)
 }
 
 export function AddCountryAPI (data, callback, error) {
@@ -65,11 +65,11 @@ export function AddSubdivisionAPI (countryId, data, callback, error) {
   }).then(callback).catch(error)
 }
 
-export function GetSubdivisionAPI (countryId, subdivisionId, callback) {
+export function GetSubdivisionAPI (countryId, subdivisionId, callback, error) {
   axios({
     method: 'get',
     url: path + '/' + countryId + subdivisionPath + '/' + subdivisionId
-  }).then(callback)
+  }).then(callback).catch(error)
 }
 
 export function UpdateSubdivisionAPI (countryId, subdivisionId, data, callback, error) {

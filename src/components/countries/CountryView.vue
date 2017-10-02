@@ -34,6 +34,9 @@ export default {
     GetCountry(this.countryid, (response) => {
       this.country = response.data.data
       this.loaded = true
+    }, (error) => {
+      console.log(error)
+      this.$router.push({name: 'PageNotFound404'})
     })
   }
 }

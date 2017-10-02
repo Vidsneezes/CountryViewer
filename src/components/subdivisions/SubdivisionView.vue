@@ -30,6 +30,9 @@ export default {
     GetSubdivision(this.countryid, this.subdivisionid, (response) => {
       this.subdivision = response.data.data
       this.loaded = true
+    }, (error) => {
+      console.log(error)
+      this.$router.push({name: 'PageNotFound404'})
     })
   }
 }

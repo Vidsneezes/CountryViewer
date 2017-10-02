@@ -1,7 +1,9 @@
 <template>
   <div class="pagenotfound">
+    <b-nav fill class="nav-bar">
+      <b-nav-item :to="{name:'CountriesGrid'}">Countries</b-nav-item>
+    </b-nav> 
     <p>404 error page not found</p>
-    <router-link :to="{name:'CountriesGrid'}">Back To Countries</router-link>
   </div>
 </template>
 <script>
@@ -24,5 +26,14 @@ li {
 }
 a {
   color: green;
+}
+.nav-bar{
+  background: lightseagreen;
+  padding-bottom: 15px;
+  padding-top: 10px;
+  
+}
+.nav-bar a {
+  color: white;
 }
 </style>
