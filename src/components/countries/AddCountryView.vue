@@ -90,7 +90,6 @@ export default {
   methods: {
     addCountry: function () {
       AddCountry(this.$data.country, (response) => {
-        console.log(response)
         this.saving = true
         this.lastIndex = response.data.data.id
         this.$router.push({name: 'CountryView', params: {countryid: this.lastIndex}})

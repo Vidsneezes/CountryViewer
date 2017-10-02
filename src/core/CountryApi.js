@@ -57,12 +57,12 @@ export function GetSubdivisionsAPI (countryId, callback) {
   }).then(callback)
 }
 
-export function AddSubdivisionAPI (countryId, data, callback) {
+export function AddSubdivisionAPI (countryId, data, callback, error) {
   axios({
     method: 'post',
     url: path + '/' + countryId + subdivisionPath,
     data: data
-  }).then(callback)
+  }).then(callback).catch(error)
 }
 
 export function GetSubdivisionAPI (countryId, subdivisionId, callback) {

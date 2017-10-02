@@ -3,7 +3,8 @@ import {GetCountriesAPI,
   GetCountryAPI,
   GetSubdivisionsAPI,
   GetSubdivisionAPI,
-  AddCountryAPI} from './CountryApi'
+  AddCountryAPI,
+  AddSubdivisionAPI} from './CountryApi'
 
 export function GetCountries (callback) {
   GetCountriesAPI(callback)
@@ -77,16 +78,8 @@ export function GetNextSubdivisionCount (countryid) {
   return max
 }
 
-export function AddSubdivision (countryid, newSubdivision) {
-  let indexedCountry = GetCountryIndex(countryid)
-  let nextCount = GetNextSubdivisionCount(countryid) + 1
-  data.countries[indexedCountry].subdivisions.push({
-    id: nextCount,
-    name: newSubdivision.name,
-    code: newSubdivision.code,
-    'country_id': countryid
-  })
-  return nextCount
+export function AddSubdivision (countryid, newSubdivision, callback, error) {
+  AddSubdivisionAPI(countryid, newSubdivision, callback, error)
 }
 
 export function EditSubdivision (countryid, newSubInfo, subdivisionid) {
