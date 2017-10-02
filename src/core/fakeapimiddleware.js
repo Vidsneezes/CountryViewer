@@ -91,6 +91,6 @@ export function GetSubdivisions (countryid, callback) {
   GetSubdivisionsAPI(countryid, callback)
 }
 
-export function GetSubdivision (countryid, subdivisionid, callback) {
-  GetSubdivisionAPI(countryid, subdivisionid, callback)
+export function GetSubdivision (countryid, subdivisionid, callback, error) {
+  GetSubdivisionAPI(countryid, subdivisionid, callback, error)
 }

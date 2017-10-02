@@ -65,11 +65,11 @@ export function AddSubdivisionAPI (countryId, data, callback, error) {
   }).then(callback).catch(error)
 }
 
-export function GetSubdivisionAPI (countryId, subdivisionId, callback) {
+export function GetSubdivisionAPI (countryId, subdivisionId, callback, error) {
   axios({
     method: 'get',
     url: path + '/' + countryId + subdivisionPath + '/' + subdivisionId
-  }).then(callback)
+  }).then(callback).catch(error)
 }
 
 export function UpdateSubdivisionAPI (countryId, subdivisionId, data, callback, error) {
