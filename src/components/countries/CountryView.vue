@@ -34,7 +34,6 @@ export default {
     GetCountry(this.countryid, (response) => {
       this.country = response.data.data
       this.loaded = true
-      console.log(this.country)
     })
   }
 }

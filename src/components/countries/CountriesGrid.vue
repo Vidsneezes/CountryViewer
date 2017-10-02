@@ -29,7 +29,6 @@ export default {
     GetCountries((response) => {
       this.countries = response.data.data
       this.loaded = true
-      console.log(this.countries)
     })
   }
 }

@@ -1,5 +1,8 @@
 import {data} from './fakeapi'
-import {GetCountriesAPI, GetCountryAPI} from './CountryApi'
+import {GetCountriesAPI,
+  GetCountryAPI,
+  GetSubdivisionsAPI,
+  GetSubdivisionAPI} from './CountryApi'
 
 export function GetCountries (callback) {
   GetCountriesAPI(callback)
@@ -112,21 +115,10 @@ export function DeleteSubdivision (countryid, subdivisionid) {
   data.countries[indexedCountry].subdivisions.splice(indexedSubdivision, 1)
 }
 
-export function GetSubdivisions (countryid) {
-  let country = GetCountry(countryid)
-  return country.subdivisions
+export function GetSubdivisions (countryid, callback) {
+  GetSubdivisionsAPI(countryid, callback)
 }
 
-export function GetSubdivision (countryid, subdivisionid) {
-  let country = GetCountry(countryid)
-  let indexedSub = -1
-  country.subdivisions.find((element, index) => {
-    if (element.id === subdivisionid) {
-      indexedSub = index
-      return
-    }
-  })
-  let subdivision = country.subdivisions[indexedSub]
-  return subdivision
+export function GetSubdivision (countryid, subdivisionid, callback) {
+  GetSubdivisionAPI(countryid, subdivisionid, callback)
 }
-
