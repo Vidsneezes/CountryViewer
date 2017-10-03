@@ -42,15 +42,13 @@ export function DeleteCountry (countryid, callback) {
   DeleteCountryAPI(countryid, callback)
 }
 
-export function GetCountryIndex (countryid) {
-  let realIndex = -1
-  data.countries.find((element, index) => {
+export function GetCountryIndex (countryid) { // aca no se, te dejo a discrecion; creo que declarar una variable para almacenar el index esta demas.
+  return data.countries.find((element, index) => {
     if (element.id === countryid) {
-      realIndex = index
-      return
+      return index
     }
+    return -1
   })
-  return realIndex
 }
 
 export function GetSubdivisionIndex (countryIndex, subdivisionid) {
@@ -65,7 +63,7 @@ export function GetSubdivisionIndex (countryIndex, subdivisionid) {
 }
 
 export function GetNextSubdivisionCount (countryid) {
-  let country = GetCountry(countryid)
+  const country = GetCountry(countryid) // country no va a cambiar, es aconsejable dejar variables estaticas como const en lugar de let :)
   let max = 0
   country.subdivisions.forEach((element) => {
     if (element.id > max) {
