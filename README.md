@@ -1,6 +1,9 @@
-# countryviewer
+# Country Viewer
 
 > A country viewer, shows countries loaded from an rest api source
+
+> This project demosntrates an implementation of vue with calls to a rest api.
+
 
 ## Build Setup
 
